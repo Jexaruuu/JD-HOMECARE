@@ -1,23 +1,21 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './index.css'
-import Login from './pages/login/Login'
-import Signup from './pages/signup/Signup'
-import ForgotPassword from "./pages/forgotpassword/forgotpassword";
-import Home from './pages/home/Home'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import './index.css';
+import Home from './pages/home/Home';
+import Login from './pages/login/Login';
+import Signup from './pages/signup/Signup';
+import ForgotPassword from './pages/forgotpassword/forgotpassword';
 
 function App() {
   return (
-      <Router>
-          <Routes>
-              <Route path="/" element={<Login/>} />
-              <Route path="/signup" element={<Signup/>} />
-              <Route path="/forgotpassword" element={<ForgotPassword/>} />
-              <Route path="/home" element={<Home/>} />
-          </Routes>
-
-      </Router>
+    <Router>
+      <Routes>
+        <Route path="/home" element={<Home />} /> {/* Home is now the default page */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/forgotpassword" element={<ForgotPassword />} />
+      </Routes>
+    </Router>
   );
 }
 
-
-export default App
+export default App;

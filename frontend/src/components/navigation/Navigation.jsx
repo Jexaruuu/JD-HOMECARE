@@ -3,25 +3,40 @@ import React from "react";
 
 const Navigation = () => {
   return (
-    <header className="bg-white shadow-md p-4">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <div className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="w-10 h-10" />
-          <h1 className="text-2xl font-bold text-blue-500">JD HomeCare</h1>
+    <header className="bg-white shadow-sm p-4">
+      <div className="max-w-7xl mx-auto flex flex-col">
+        {/* Top row with logo and auth links */}
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex items-center space-x-2">
+            <h1 className="text-3xl font-bold text-red-500">yelp</h1>
+          </div>
+          
+          <div className="flex items-center space-x-4">
+            <Link to="/business" className="text-gray-700 hover:underline">Web for Business →</Link>
+            <Link to="/write-review" className="text-gray-700 hover:underline">Write a Review</Link>
+            <Link to="/start-project" className="text-gray-700 hover:underline">Start a Project</Link>
+            <Link to="/login" className="text-gray-700 hover:underline">Log in</Link>
+            <button className="bg-black text-white px-4 py-2 rounded font-medium">
+              Sign Up
+            </button>
+          </div>
         </div>
-        <nav>
-          <ul className="flex space-x-4">
-            <li><a href="#" className="text-gray-700">Services</a></li>
-            <li>
-              <Link to="/" className="text-gray-700">Sign Up / Log In</Link>
-            </li>
-            <li>
-              <button className="bg-green-600 text-white px-4 py-2 rounded">
-                Become a Tasker
-              </button>
-            </li>
-          </ul>
-        </nav>
+        
+        {/* Search and categories row */}
+        <div className="flex justify-between items-center">
+          <div className="text-sm text-gray-500">
+            things to do, tax services, plumbers | Bacolod, Negros Occidental, Philippines
+          </div>
+          
+          <nav>
+            <ul className="flex space-x-6">
+              <li><Link to="/restaurants" className="text-gray-700 font-medium hover:text-red-500">Restaurants</Link></li>
+              <li><Link to="/home-services" className="text-gray-700 font-medium hover:text-red-500">Home Services</Link></li>
+              <li><Link to="/auto-services" className="text-gray-700 font-medium hover:text-red-500">Auto Services</Link></li>
+              <li><Link to="/more" className="text-gray-700 font-medium hover:text-red-500">More</Link></li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
   );

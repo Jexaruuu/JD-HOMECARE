@@ -63,7 +63,7 @@ const Signup = () => {
                     </form>
                     
                     <div className="flex flex-col sm:flex-row justify-between mt-4 text-gray-600 text-sm w-full">
-                        <Link to="/" className="hover:underline sm:ml-auto mt-2 sm:mt-0">Already have an account? Log in</Link>
+                        <Link to="/login" className="hover:underline sm:ml-auto mt-2 sm:mt-0">Already have an account? Log in</Link>
                     </div>
                 </div>
             </div>
