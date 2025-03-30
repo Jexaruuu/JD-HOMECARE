@@ -2,27 +2,95 @@ import React, { useState, useEffect } from "react";
 import { FaHammer, FaBolt, FaWrench, FaCar, FaTshirt } from "react-icons/fa";
 
 const categories = {
-  Carpenter: ["General Carpentry", "Furniture Repair", "Wood Polishing"],
-  Electrician: ["Wiring Repair", "Appliance Installation", "Lighting Fixtures"],
-  Plumber: ["Leak Fixing", "Pipe Installation", "Bathroom Fittings"],
-  "Car Washer": ["Exterior Wash", "Interior Cleaning", "Wax & Polish"],
-  Laundry: ["Dry Cleaning", "Ironing", "Wash & Fold"]
+  Carpenter: [
+    "General Carpentry",
+    "Furniture Repair",
+    "Wood Polishing",
+    "Door & Window Fitting",
+    "Custom Furniture Design",
+    "Modular Kitchen Installation",
+    "Flooring & Decking",
+    "Cabinet & Wardrobe Fixing",
+    "Wall Paneling & False Ceiling",
+    "Wood Restoration & Refinishing"
+  ],
+  Electrician: [
+    "Wiring Repair",
+    "Appliance Installation",
+    "Lighting Fixtures",
+    "Circuit Breaker & Fuse Repair",
+    "CCTV & Security System Setup",
+    "Fan & Exhaust Installation",
+    "Inverter & Battery Setup",
+    "Switchboard & Socket Repair",
+    "Electrical Safety Inspection",
+    "Smart Home Automation"
+  ],
+  Plumber: [
+    "Leak Fixing",
+    "Pipe Installation",
+    "Bathroom Fittings",
+    "Drain Cleaning & Unclogging",
+    "Water Tank Installation & Cleaning",
+    "Gas Pipeline Installation",
+    "Septic Tank & Sewer Repair",
+    "Geyser & Water Heater Installation",
+    "Toilet & Sink Repair",
+    "Kitchen Plumbing Solutions"
+  ],
+  "Car Washer": [
+    "Exterior Wash",
+    "Interior Cleaning",
+    "Wax & Polish",
+    "Underbody Cleaning",
+    "Engine Bay Cleaning",
+    "Headlight Restoration",
+    "Ceramic Coating",
+    "Tire & Rim Cleaning",
+    "Vacuum & Odor Removal",
+    "Paint Protection Film Application"
+  ],
+  Laundry: [
+    "Dry Cleaning",
+    "Ironing",
+    "Wash & Fold",
+    "Steam Pressing",
+    "Stain Removal Treatment",
+    "Curtains & Upholstery Cleaning",
+    "Delicate Fabric Care",
+    "Shoe & Leather Cleaning",
+    "Express Same-Day Laundry",
+    "Eco-Friendly Washing"
+  ]
 };
 
+
 const categoryImages = {
-  Carpenter: "/carpenter.jpg",
-  Electrician: "/electrician.jpg",
-  Plumber: "/plumber.jpg",
-  "Car Washer": "/carwash.jpg",
-  Laundry: "/laundry.jpg"
+  Carpenter: "/carpenter2.jpg",
+  Electrician: "/electrician2.jpg",
+  Plumber: "/plumber2.jpg",
+  "Car Washer": "/carwash1.jpg",
+  Laundry: "/laundry1.jpg"
 };
 
 const heroImages = [
-  "/carpenter.jpg",
-  "/electrician.jpg",
-  "/plumber.jpg",
-  "/carwash.jpg",
-  "/laundry.jpg"
+  "/carpenter1.jpg",
+  "/electrician1.jpg",
+  "/plumber1.jpg",
+  "/carwash2.jpg",
+  "/laundry2.jpg"
+];
+
+// Popular Projects data
+const popularProjects = [
+  { name: "Furniture Repair", image: "/grid1.jpg" },
+  { name: "Wiring Repair", image: "/grid2.jpg" },
+  { name: "Leak Fixing", image: "/grid3.jpg" },
+  { name: "Exterior Wash", image: "/grid4.jpg" },
+  { name: "Dry Cleaning", image: "/grid5.jpg" },
+  { name: "Pipe Installation", image: "/grid6.jpg" },
+  { name: "Wood Polishing", image: "/grid7.jpg" },
+  { name: "Lighting Fixtures", image: "/grid8.jpg" }
 ];
 
 const Header = () => {
@@ -42,91 +110,123 @@ const Header = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen relative flex flex-col justify-center">
-      {/* Hero Section with Background Image Transition */}
-      <div className="absolute inset-0 w-full h-3/6 bg-cover bg-center transition-opacity duration-1000" 
-        style={{ backgroundImage: `url(${heroImages[currentImageIndex]})`, opacity: fade ? 1 : 0 }}>
-        <div className="absolute inset-0 bg-black opacity-50"></div>
+    <div className="w-full flex flex-col justify-between relative">
+      {/* Hero Section */}
+      <div 
+        className="relative w-full h-7/12 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 flex flex-col justify-center items-center" 
+        style={{ backgroundImage: `url(${heroImages[currentImageIndex]})`, backgroundSize: "cover", opacity: fade ? 1 : 0 }}
+      >
+        <div className="absolute inset-0 bg-black opacity-60"></div>
+        
+        {/* Search Section Inside Hero */}
+        <section className="relative text-center flex flex-col justify-center items-center text-white w-full h-auto py-10 z-10">
+          <div className="bg-opacity-50 px-6 py-4 rounded">
+            <h2 className="text-4xl font-bold">Book trusted home help today</h2>
+          </div>
+          <div className="mt-6 flex justify-center w-full max-w-lg">
+            <input
+              type="text"
+              placeholder="What do you need help with?"
+              className="border p-3 w-2/3 rounded"
+            />
+            <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out font-[Poppins] text-white px-5 py-3 rounded ml-2">
+              Search
+            </button>
+          </div>
+        </section>
       </div>
       
-      <section className="relative text-center flex flex-col justify-center items-center text-white w-full h-7/12 -mt-10">
-        <div className="bg-opacity-50 px-6 py-4 rounded">
-          <h2 className="text-4xl font-bold">Book trusted help for home tasks</h2>
-        </div>
-        <div className="mt-6 flex justify-center w-full max-w-lg">
-          <input
-            type="text"
-            placeholder="What do you need help with?"
-            className="border p-3 w-2/3 rounded"
-          />
-          <button className="bg-green-600 text-white px-5 py-3 rounded ml-2">
-            Search
-          </button>
-        </div>
-      </section>
+      {/* Categories Section */}
+      <div className="flex flex-col items-center space-y-6 py-10">
+        <h2 className="text-xl font-bold text-gray-800">Service Categories</h2>
+        <div className="flex flex-wrap justify-center gap-12">
+          {Object.keys(categories).map((category) => {
+            const Icon =
+              category === "Carpenter" ? FaHammer :
+              category === "Electrician" ? FaBolt :
+              category === "Plumber" ? FaWrench :
+              category === "Car Washer" ? FaCar :
+              FaTshirt;
 
-      {/* Task Categories */}
-<div className="relative -mt-1 left-1/2 transform -translate-x-1/2 flex justify-center space-x-20">
-  {Object.keys(categories).map((category) => {
-    const Icon =
-      category === "Carpenter"
-        ? FaHammer
-        : category === "Electrician"
-        ? FaBolt
-        : category === "Plumber"
-        ? FaWrench
-        : category === "Car Washer"
-        ? FaCar
-        : FaTshirt;
-    return (
-      <div
-        key={category}
-        className="text-center cursor-pointer"
-        onClick={() => setSelectedCategory(category)}
-      >
-        <Icon
-          className={`text-3xl mx-auto ${
-            selectedCategory === category ? "text-blue-600" : "text-gray-500"
-          }`}
-        />
-        <p
-          className={`text-sm font-semibold ${
-            selectedCategory === category ? "text-blue-600" : "text-gray-700"
-          }`}
-        >
-          {category}
-        </p>
+            return (
+              <div
+                key={category}
+                className="text-center cursor-pointer"
+                onClick={() => setSelectedCategory(category)}
+              >
+                <Icon
+                  className={`text-3xl mx-auto ${
+                    selectedCategory === category ? "text-[#2218ff]" : "text-gray-500"
+                  }`}
+                />
+                <p
+                  className={`text-md font-semibold ${
+                    selectedCategory === category ? "text-[#2218ff]" : "text-gray-700"
+                  }`}
+                >
+                  {category}
+                </p>
+              </div>
+            );
+          })}
+        </div>
       </div>
-    );
-  })}
-</div>
 
-
-      {/* Subcategories - Change based on selected category */}
-      <div className="flex justify-center flex-wrap gap-2 mt-5">
+        {/* Subcategories Section */}
+        <div className="w-full flex justify-center py-6 bg-[#F3F4F6]">
+  <div className="max-w-6xl w-full px-4">
+    <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center gap-2">
         {categories[selectedCategory].map((subcategory) => (
-          <button key={subcategory} className="border px-3 py-1 rounded-full text-sm">
+          <button key={subcategory} className="border px-4 py-2 rounded-md text-[16px]">
             {subcategory}
           </button>
         ))}
       </div>
+    </div>
+  </div>
+</div>
 
-      {/* Featured Service Section - Centered */}
-      <div className="flex-grow flex items-center justify-center mt-8">
-        <div className="bg-blue-100 p-6 rounded-lg flex flex-col md:flex-row items-center max-w-7xl w-full">
-          <div className="w-full md:w-1/2">
-            <h3 className="text-xl font-bold">{selectedCategory}</h3>
-            <ul className="list-disc list-inside mt-2">
+        {/* Category Description */}
+        <div className="flex justify-center items-center w-full py-12">
+        <div className="p-6 rounded-lg flex flex-col md:flex-row items-center max-w-6xl w-full">
+          <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
+            <img
+              src={categoryImages[selectedCategory]}
+              alt={selectedCategory}
+              className="rounded-lg w-[1080px] h-64 object-cover"
+            />
+          </div>
+          <div className="w-full md:w-1/2 px-6 text-center md:text-left">
+            <h3 className="text-lg font-bold text-center text-gray-800">{selectedCategory}</h3>
+            <ul className="list-disc list-inside text-center mt-3 text-gray-700">
               <li>Get expert help with {selectedCategory.toLowerCase()} services.</li>
               <li>Now Trending: Best quality service and customer satisfaction.</li>
             </ul>
           </div>
-          <div className="w-full md:w-1/2 flex justify-center mt-4 md:mt-0">
-            <img
-              src={categoryImages[selectedCategory]}
-              alt={selectedCategory}
-              className="rounded-lg w-3/4 h-64 object-cover"
-            />
+        </div>
+      </div>
+
+      {/* Popular Services */}
+<div className="w-full py-10 bg-[#F3F4F6]">
+  <div className="max-w-6xl mx-auto px-4">
+    <h2 className="text-xl font-bold text-gray-800 mb-8 text-center">Popular Services</h2>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {popularProjects.map((project, index) => (
+        <div 
+          key={index} 
+          className="relative group rounded-lg overflow-hidden h-64 shadow-lg hover:shadow-xl transition-shadow"
+          style={{ backgroundImage: `url(${project.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
+        >
+          <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-50 transition-opacity cursor-pointer"></div>
+          <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
+            <h3 className="font-bold text-lg mb-2">{project.name}</h3>
+            <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold px-4 py-2 rounded-lg">
+              Book Now
+            </button>
+          </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

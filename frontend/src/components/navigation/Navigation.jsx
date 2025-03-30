@@ -3,12 +3,12 @@ import React from "react";
 
 const Navigation = () => {
   return (
-    <header className="bg-white shadow-sm p-4">
-      <div className="max-w-7xl mx-auto flex flex-col">
-        {/* Top row with logo and auth links */}
+    <header className="bg-[#F3F4F6] shadow-sm p-4">
+      <div className="max-w-6xl mx-auto flex flex-col">
+  
         <div className="flex justify-between items-center mb-4">
           <div className="flex items-center space-x-3">
-            {/* Logo positioned on the left with increased size */}
+     
             <div className="h-14 flex items-center">
               <img src="/logo.png" alt="Logo" className="h-[90px] w-[90px] mt-2 -ml-2" />
             </div>
@@ -16,24 +16,25 @@ const Navigation = () => {
           </div>
           
           <div className="flex items-center space-x-4">
-            <button className="bg-black text-white px-4 py-2 rounded font-medium">Become a Tasker</button>
-            <Link to="/login"><button className="bg-black text-white px-4 py-2 rounded font-medium">Log in</button></Link>
-            <Link to="/signup"><button className="bg-black text-white px-4 py-2 rounded font-medium">Sign up</button></Link>
+          <button className="bg-white text-black border border-black px-4 py-2 rounded font-medium cursor-pointer hover:bg-amber-200 transition-colors duration-300 ease-in-out">Become a Tasker</button>
+            <Link to="/login"><button className=" bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out text-white px-4 py-2 rounded font-medium">Log in</button></Link>
+            <Link to="/signup"><button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out text-white px-4 py-2 rounded font-medium">Sign up</button></Link>
           </div>
         </div>
+
         
-        {/* Search and categories row */}
+  
         <div className="flex justify-between items-center">
-          <div className="text-sm text-gray-500">
+          <div className="text-[16px] text-gray-500">
             Home Service & Maintenance | Bacolod, Negros Occidental, Philippines
           </div>
           
           <nav>
-            <ul className="flex space-x-6">
-              <li><Link to="/restaurants" className="text-gray-700 font-medium hover:text-red-500">Home</Link></li>
-              <li><Link to="/home-services" className="text-gray-700 font-medium hover:text-red-500">About</Link></li>
-              <li><Link to="/auto-services" className="text-gray-700 font-medium hover:text-red-500">Services</Link></li>
-              <li><Link to="/more" className="text-gray-700 font-medium hover:text-red-500">Know More</Link></li>
+            <ul className="flex space-x-6 text-[16px]">
+              <li><Link to="/restaurants" className="text-gray-700 font-medium hover:text-[#0d05d2]">Home</Link></li>
+              <li><Link to="/home-services" className="text-gray-700 font-medium hover:text-[#0d05d2]">About</Link></li>
+              <li><Link to="/auto-services" className="text-gray-700 font-medium hover:text-[#0d05d2]">Services</Link></li>
+              <li><Link to="/more" className="text-gray-700 font-medium hover:text-[#0d05d2]">Know More</Link></li>
             </ul>
           </nav>
         </div>
