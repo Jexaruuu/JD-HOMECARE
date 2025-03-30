@@ -30,13 +30,13 @@ const ForgotPassword = () => {
                         
                         <button 
                             type="submit" 
-                            className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out">
+                            className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer">
                             Set Password
                         </button>
                     </form>
                     
                     <div className="flex flex-col sm:flex-row justify-between mt-4 text-gray-600 text-sm w-full">
-                        <Link to="/login" className="hover:underline sm:ml-auto mt-2 sm:mt-0">Back to Login</Link>
+                        <Link to="/login" className="hover:underline sm:ml-auto mt-2 sm:mt-0 cursor-pointer">Back to Login</Link>
                     </div>
                 </div>
             </div>

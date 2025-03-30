@@ -48,7 +48,7 @@ const Signup = () => {
                         <label className="text-gray-700 text-sm">Confirm Password</label>
                         <input 
                             type="password" 
-                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-4" 
+                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-4 cursor-pointer" 
                             placeholder="Confirm your password" 
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -57,13 +57,13 @@ const Signup = () => {
                     
                         <button 
                             type="submit" 
-                            className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out">
+                            className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer">
                             Sign Up
                         </button>
                     </form>
                     
                     <div className="flex flex-col sm:flex-row justify-between mt-4 text-gray-600 text-sm w-full">
-                        <Link to="/login" className="hover:underline sm:ml-auto mt-2 sm:mt-0">Already have an account? Log in</Link>
+                        <Link to="/login" className="hover:underline sm:ml-auto mt-2 sm:mt-0 cursor-pointer">Already have an account? Log in</Link>
                     </div>
                 </div>
             </div>

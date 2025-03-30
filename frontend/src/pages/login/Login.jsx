@@ -44,13 +44,13 @@ const Login = () => {
                         />
                     
                         <Link to="/home" className="w-full">
-                            <button type="submit" className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out">Log in</button>
+                            <button type="submit" className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer">Log in</button>
                         </Link>
                     </form>
                     
                     <div className="flex flex-col sm:flex-row justify-between mt-4 text-gray-600 text-sm w-full">
-                        <Link to="/signup" className="hover:underline">Create account</Link>
-                        <Link to="/forgotpassword" className="hover:underline sm:ml-auto mt-2 sm:mt-0">Forgot Password?</Link>
+                        <Link to="/signup" className="hover:underline cursor-pointer">Create account</Link>
+                        <Link to="/forgotpassword" className="hover:underline sm:ml-auto mt-2 sm:mt-0 cursor-pointer">Forgot Password?</Link>
                     </div>
                 </div>
             </div>

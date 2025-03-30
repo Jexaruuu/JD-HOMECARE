@@ -178,7 +178,7 @@ const Header = () => {
     <div className="flex justify-center">
       <div className="flex flex-wrap justify-center gap-2">
         {categories[selectedCategory].map((subcategory) => (
-          <button key={subcategory} className="border px-4 py-2 rounded-md text-[16px]">
+          <button key={subcategory} className="border px-4 py-2 rounded-md text-[16px] cursor-pointer hover:bg-blue-200">
             {subcategory}
           </button>
         ))}
@@ -201,7 +201,7 @@ const Header = () => {
             <h3 className="text-lg font-bold text-center text-gray-800">{selectedCategory}</h3>
             <ul className="list-disc list-inside text-center mt-3 text-gray-700">
               <li>Get expert help with {selectedCategory.toLowerCase()} services.</li>
-              <li>Now Trending: Best quality service and customer satisfaction.</li>
+              <li>Book now to experience our convient services.</li>
             </ul>
           </div>
         </div>
