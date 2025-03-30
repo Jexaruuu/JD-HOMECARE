@@ -64,7 +64,6 @@ const categories = {
   ]
 };
 
-
 const categoryImages = {
   Carpenter: "/carpenter2.jpg",
   Electrician: "/electrician2.jpg",
@@ -93,10 +92,47 @@ const popularProjects = [
   { name: "Lighting Fixtures", image: "/grid8.jpg" }
 ];
 
+// JD HOMECARE specific FAQ data
+const faqItems = [
+  {
+    question: "What services does JD HOMECARE offer?",
+    answer: "Answer1"
+  },
+  {
+    question: "How quickly can I get a service appointment?",
+    answer: "Answer2"
+  },
+  {
+    question: "Are your workers qualified",
+    answer: "Answer3"
+  },
+  {
+    question: "What areas do you service?",
+    answer: "Answer4"
+  },
+  {
+    question: "How are your service prices determined?",
+    answer: "Answer5"
+  },
+  {
+    question: "Do you offer warranties on your work?",
+    answer: "Answer6"
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "Answer7"
+  },
+  {
+    question: "Can I schedule regular maintenance services?",
+    answer: "Answer8"
+  }
+];
+
 const Header = () => {
   const [selectedCategory, setSelectedCategory] = useState("Carpenter");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -108,6 +144,10 @@ const Header = () => {
     }, 5000);
     return () => clearInterval(interval);
   }, []);
+
+  const toggleFAQ = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
     <div className="w-full flex flex-col justify-between relative">
@@ -172,23 +212,23 @@ const Header = () => {
         </div>
       </div>
 
-        {/* Subcategories Section */}
-        <div className="w-full flex justify-center py-6 bg-[#F3F4F6]">
-  <div className="max-w-6xl w-full px-4">
-    <div className="flex justify-center">
-      <div className="flex flex-wrap justify-center gap-2">
-        {categories[selectedCategory].map((subcategory) => (
-          <button key={subcategory} className="border px-4 py-2 rounded-md text-[16px] cursor-pointer hover:bg-blue-200">
-            {subcategory}
-          </button>
-        ))}
+      {/* Subcategories Section */}
+      <div className="w-full flex justify-center py-6 bg-[#F3F4F6]">
+        <div className="max-w-6xl w-full px-4">
+          <div className="flex justify-center">
+            <div className="flex flex-wrap justify-center gap-2">
+              {categories[selectedCategory].map((subcategory) => (
+                <button key={subcategory} className="border px-4 py-2 rounded-md text-[16px] cursor-pointer hover:bg-blue-200">
+                  {subcategory}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
 
-        {/* Category Description */}
-        <div className="flex justify-center items-center w-full py-12">
+      {/* Category Description */}
+      <div className="flex justify-center items-center w-full py-12">
         <div className="p-6 rounded-lg flex flex-col md:flex-row items-center max-w-6xl w-full">
           <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
             <img
@@ -208,23 +248,52 @@ const Header = () => {
       </div>
 
       {/* Popular Services */}
-<div className="w-full py-10 bg-[#F3F4F6]">
-  <div className="max-w-6xl mx-auto px-4">
-    <h2 className="text-xl font-bold text-gray-800 mb-8 text-center">Popular Services</h2>
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-      {popularProjects.map((project, index) => (
-        <div 
-          key={index} 
-          className="relative group rounded-lg overflow-hidden h-64 shadow-lg hover:shadow-xl transition-shadow"
-          style={{ backgroundImage: `url(${project.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
-        >
-          <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-50 transition-opacity cursor-pointer"></div>
-          <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
-            <h3 className="font-bold text-lg mb-2">{project.name}</h3>
-            <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold px-4 py-2 rounded-lg">
-              Book Now
-            </button>
+      <div className="w-full py-10 bg-[#F3F4F6]">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-xl font-bold text-gray-800 mb-8 text-center">Popular Services</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {popularProjects.map((project, index) => (
+              <div 
+                key={index} 
+                className="relative group rounded-lg overflow-hidden h-64 shadow-lg hover:shadow-xl transition-shadow"
+                style={{ backgroundImage: `url(${project.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
+              >
+                <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-50 transition-opacity cursor-pointer"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
+                  <h3 className="font-bold text-lg mb-2">{project.name}</h3>
+                  <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold px-4 py-2 rounded-lg">
+                    Book Now
+                  </button>
+                </div>
+              </div>
+            ))}
           </div>
+        </div>
+      </div>
+
+      {/* JD HOMECARE FAQ Section */}
+      <div className="w-full py-16 bg-[#F3F4F6]">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-xl font-bold text-center text-gray-800 mb-12">JD HOMECARE FAQs</h2>
+          <div className="space-y-6">
+            {faqItems.map((item, index) => (
+              <div key={index} className="border-b border-gray-200 pb-6">
+                <button
+                  className="flex justify-between items-center w-full text-left"
+                  onClick={() => toggleFAQ(index)}
+                >
+                  <h3 className="text-lg font-semibold text-gray-800 hover:text-[#3f42ff] transition-colors">
+                    {item.question}
+                  </h3>
+                  <span className="text-gray-500 text-xl ml-4">
+                    {activeIndex === index ? '-' : '+'}
+                  </span>
+                </button>
+                {activeIndex === index && (
+                  <div className="mt-4 text-gray-600">
+                    <p>{item.answer}</p>
+                  </div>
+                )}
               </div>
             ))}
           </div>

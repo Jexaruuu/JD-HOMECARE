@@ -2,29 +2,65 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Signup = () => {
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [mobile, setMobile] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
     const handleSignup = (e) => {
         e.preventDefault();
+        console.log("First Name:", firstName);
+        console.log("Last Name:", lastName);
+        console.log("Mobile:", mobile);
         console.log("Email:", email);
         console.log("Password:", password);
         console.log("Confirm Password:", confirmPassword);
     };
 
     return (
-        <div className="flex flex-col md:flex-row-reverse min-h-screen bg-gray-100">
+        <div className="flex flex-col md:flex-row-reverse h-screen bg-gray-100 overflow-hidden">
             
             <div className="hidden md:block md:w-1/2 bg-[url('/carwash.jpg')] bg-cover bg-center"></div>
             
             <div className="flex justify-center items-center w-full md:w-1/2 bg-white shadow-lg p-6 md:p-8">
                 <div className="w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col items-center">
-                    <img src="/logo.png" alt="Logo" className="w-40 h-40 md:w-80 md:h-80" />
+                    <img src="/logo.png" alt="Logo" className="w-40 h-40 md:w-45 md:h-45 -mt-10" />
                     <h2 className="text-gray-900 text-2xl md:text-3xl font-semibold mb-2 font-[Poppins]">Sign Up</h2>
                     <p className="text-gray-500 text-sm md:text-md text-center mb-6 md:mb-10">Create an account and start your journey with us.</p>
                     
                     <form className="w-full" onSubmit={handleSignup}>
+                        <label className="text-gray-700 text-sm">First Name</label>
+                        <input 
+                            type="text" 
+                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-3" 
+                            placeholder="Enter your first name" 
+                            value={firstName}
+                            onChange={(e) => setFirstName(e.target.value)}
+                            required
+                        />
+                        
+                        <label className="text-gray-700 text-sm">Last Name</label>
+                        <input 
+                            type="text" 
+                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-3" 
+                            placeholder="Enter your last name" 
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                            required
+                        />
+                        
+                        <label className="text-gray-700 text-sm">Mobile Number</label>
+                        <input 
+                            type="tel" 
+                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-3" 
+                            placeholder="Enter your mobile number" 
+                            value={mobile}
+                            onChange={(e) => setMobile(e.target.value)}
+                            required
+                        />
+                        
                         <label className="text-gray-700 text-sm">Email Address</label>
                         <input 
                             type="email" 
