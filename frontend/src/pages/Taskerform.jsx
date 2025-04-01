@@ -61,13 +61,13 @@ const TaskerForm = () => {
       </div>
 
       {/* Application Form */}
-      <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg my-8">
+      <div className="max-w-4xl mx-auto p-6 bg-[#efefef] shadow-md rounded-lg my-8">
         <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">
           JD HOMECARE Worker Application
         </h2>
         
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          {/* Personal Information Section */}
+    
           <section className="bg-gray-50 p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">
               Personal Information
@@ -157,7 +157,7 @@ const TaskerForm = () => {
             </div>
           </section>
 
-          {/* Professional Information Section */}
+      
           <section className="bg-gray-50 p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">
               Professional Information
@@ -218,7 +218,7 @@ const TaskerForm = () => {
             </div>
           </section>
 
-          {/* Document Upload Section */}
+       
           <section className="bg-gray-50 p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">
               Required Documents
@@ -339,7 +339,7 @@ const TaskerForm = () => {
             </div>
           </section>
 
-          {/* Government Numbers Section */}
+        
           <section className="bg-gray-50 p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">
               Government Numbers
@@ -401,7 +401,7 @@ const TaskerForm = () => {
             </div>
           </section>
 
-          {/* Agreements Section */}
+         
           <section className="bg-gray-50 p-6 rounded-lg">
             <h3 className="text-xl font-semibold mb-4 text-gray-700 border-b pb-2">
               Agreements
@@ -467,7 +467,7 @@ const TaskerForm = () => {
             </div>
           </section>
 
-          {/* Submit Button */}
+        
           <div className="text-center">
             <button 
               type="submit" 
