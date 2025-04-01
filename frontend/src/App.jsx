@@ -5,7 +5,7 @@ import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import ForgotPassword from './pages/forgotpassword/forgotpassword';
 import Services from './pages/services/Services';
-import TaskerForm from './pages/Taskerform';
+import TaskerForm from './pages/taskerform/Taskerform';
 
 function App() {
   return (
