@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import Navigation from "../components/navigation/navigation";
-import Footer from "../components/footer/Footer";
+import Navigation from "../../components/navigation/navigation";
+import Footer from "../../components/footer/Footer";
 
 const TaskerForm = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
