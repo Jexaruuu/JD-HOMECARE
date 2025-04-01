@@ -4,6 +4,8 @@ import Home from './pages/home/Home';
 import Login from './pages/login/Login';
 import Signup from './pages/signup/Signup';
 import ForgotPassword from './pages/forgotpassword/forgotpassword';
+import Services from './pages/services/Services';
+import TaskerForm from './pages/Taskerform';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/taskerform" element={<TaskerForm />} />
       </Routes>
     </Router>
   );

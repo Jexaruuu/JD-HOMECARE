@@ -80,51 +80,50 @@ const heroImages = [
   "/laundry2.jpg"
 ];
 
-// Popular Projects data
 const popularProjects = [
-  { name: "Furniture Repair", image: "/grid1.jpg" },
-  { name: "Wiring Repair", image: "/grid2.jpg" },
-  { name: "Leak Fixing", image: "/grid3.jpg" },
-  { name: "Exterior Wash", image: "/grid4.jpg" },
-  { name: "Dry Cleaning", image: "/grid5.jpg" },
-  { name: "Pipe Installation", image: "/grid6.jpg" },
-  { name: "Wood Polishing", image: "/grid7.jpg" },
-  { name: "Lighting Fixtures", image: "/grid8.jpg" }
+  { name: "Furniture Repair", image: "/grid1.jpg", rate: "₱300 - ₱500" },
+  { name: "Wiring Repair", image: "/grid2.jpg", rate: "₱400 - ₱600" },
+  { name: "Leak Fixing", image: "/grid3.jpg", rate: "₱350 - ₱550" },
+  { name: "Exterior Wash", image: "/grid4.jpg", rate: "₱250 - ₱400" },
+  { name: "Dry Cleaning", image: "/grid5.jpg", rate: "₱200 - ₱350" },
+  { name: "Pipe Installation", image: "/grid6.jpg", rate: "₱450 - ₱700" },
+  { name: "Wood Polishing", image: "/grid7.jpg", rate: "₱350 - ₱500" },
+  { name: "Lighting Fixtures", image: "/grid8.jpg", rate: "₱300 - ₱450" }
 ];
 
-// JD HOMECARE specific FAQ data
+
 const faqItems = [
   {
     question: "What services does JD HOMECARE offer?",
-    answer: "Answer1"
+    answer: "We provide home maintenance and repair services like plumbing, electrical, cleaning, and general handyman tasks."
   },
   {
     question: "How quickly can I get a service appointment?",
-    answer: "Answer2"
+    answer: "We aim to schedule appointments within 24–48 hours, depending on availability."
   },
   {
     question: "Are your workers qualified",
-    answer: "Answer3"
+    answer: "Yes, all our workers are trained, experienced, and background-checked for your safety."
   },
   {
     question: "What areas do you service?",
-    answer: "Answer4"
+    answer: "We currently serve Bacolod City. Contact us to confirm if we cover your location."
   },
   {
     question: "How are your service prices determined?",
-    answer: "Answer5"
+    answer: "Prices are based on the job type, materials needed, and time required. We offer upfront quotes."
   },
   {
     question: "Do you offer warranties on your work?",
-    answer: "Answer6"
+    answer: "Yes, most services come with a 10-day warranty for peace of mind."
   },
   {
     question: "What payment methods do you accept?",
-    answer: "Answer7"
+    answer: "We credit/debit cards and mobile payments for convenience."
   },
   {
     question: "Can I schedule regular maintenance services?",
-    answer: "Answer8"
+    answer: "Yes! We offer flexible plans for recurring services like cleaning or inspections."
   }
 ];
 
@@ -151,14 +150,14 @@ const Header = () => {
 
   return (
     <div className="w-full flex flex-col justify-between relative">
-      {/* Hero Section */}
+     
       <div 
         className="relative w-full h-7/12 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 flex flex-col justify-center items-center" 
         style={{ backgroundImage: `url(${heroImages[currentImageIndex]})`, backgroundSize: "cover", opacity: fade ? 1 : 0 }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
         
-        {/* Search Section Inside Hero */}
+      
         <section className="relative text-center flex flex-col justify-center items-center text-white w-full h-auto py-10 z-10">
           <div className="bg-opacity-50 px-6 py-4 rounded">
             <h2 className="text-4xl font-bold">Book trusted home help today</h2>
@@ -176,9 +175,8 @@ const Header = () => {
         </section>
       </div>
       
-      {/* Categories Section */}
+      
       <div className="flex flex-col items-center space-y-6 py-10">
-        <h2 className="text-xl font-bold text-gray-800">Service Categories</h2>
         <div className="flex flex-wrap justify-center gap-12">
           {Object.keys(categories).map((category) => {
             const Icon =
@@ -212,7 +210,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Subcategories Section */}
+     
       <div className="w-full flex justify-center py-6 bg-[#F3F4F6]">
         <div className="max-w-6xl w-full px-4">
           <div className="flex justify-center">
@@ -227,7 +225,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Category Description */}
+     
       <div className="flex justify-center items-center w-full py-12">
         <div className="p-6 rounded-lg flex flex-col md:flex-row items-center max-w-6xl w-full">
           <div className="w-full md:w-1/2 flex justify-center mb-6 md:mb-0">
@@ -247,10 +245,10 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Popular Services */}
+    
       <div className="w-full py-10 bg-[#F3F4F6]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-gray-800 mb-8 text-center">Popular Services</h2>
+          <h2 className="text-xl font-bold text-gray-800 mb-8 text-center">Popular Works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {popularProjects.map((project, index) => (
               <div 
@@ -261,8 +259,9 @@ const Header = () => {
                 <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-50 transition-opacity cursor-pointer"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
                   <h3 className="font-bold text-lg mb-2">{project.name}</h3>
-                  <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold px-4 py-2 rounded-lg">
-                    Book Now
+                  <p className="text-sm font-semibold">Service Rate / Hour: {project.rate}</p>
+                  <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold px-4 py-2 rounded-lg mt-2">
+                    Book A Schedule Now
                   </button>
                 </div>
               </div>
@@ -271,7 +270,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* JD HOMECARE FAQ Section */}
+      
       <div className="w-full py-16 bg-[#F3F4F6]">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="text-xl font-bold text-center text-gray-800 mb-12">JD HOMECARE FAQs</h2>
@@ -279,7 +278,7 @@ const Header = () => {
             {faqItems.map((item, index) => (
               <div key={index} className="border-b border-gray-200 pb-6">
                 <button
-                  className="flex justify-between items-center w-full text-left"
+                  className="flex justify-between items-center w-full text-left cursor-pointer" 
                   onClick={() => toggleFAQ(index)}
                 >
                   <h3 className="text-lg font-semibold text-gray-800 hover:text-[#3f42ff] transition-colors">

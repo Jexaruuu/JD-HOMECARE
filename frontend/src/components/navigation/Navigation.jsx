@@ -16,7 +16,7 @@ const Navigation = () => {
           </div>
           
           <div className="flex items-center space-x-4">
-          <button className="bg-white text-black border border-black px-4 py-2 rounded font-medium cursor-pointer hover:bg-amber-200 transition-colors duration-300 ease-in-out">Become a Tasker</button>
+            <Link to="/taskerform"><button className="bg-white text-black border border-black px-4 py-2 rounded font-medium cursor-pointer hover:bg-amber-200 transition-colors duration-300 ease-in-out">Become a Worker</button></Link>
             <Link to="/login"><button className=" bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out text-white px-4 py-2 rounded font-medium cursor-pointer">Log in</button></Link>
             <Link to="/signup"><button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out text-white px-4 py-2 rounded font-medium cursor pointer">Sign up</button></Link>
           </div>
@@ -33,7 +33,7 @@ const Navigation = () => {
             <ul className="flex space-x-6 text-[16px]">
               <li><Link to="/home" className="text-gray-700 font-medium hover:text-[#0d05d2]">Home</Link></li>
               <li><Link to="#" className="text-gray-700 font-medium hover:text-[#0d05d2]">About</Link></li>
-              <li><Link to="#" className="text-gray-700 font-medium hover:text-[#0d05d2]">Services</Link></li>
+              <li><Link to="/services" className="text-gray-700 font-medium hover:text-[#0d05d2]">Services</Link></li>
               <li><Link to="#" className="text-gray-700 font-medium hover:text-[#0d05d2]">Know More</Link></li>
             </ul>
           </nav>
