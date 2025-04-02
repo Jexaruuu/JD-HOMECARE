@@ -43,7 +43,7 @@ const Login = () => {
                             required
                         />
                     
-                        <Link to="/home" className="w-full">
+                        <Link to="/userhome" className="w-full">
                             <button type="submit" className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer">Log in</button>
                         </Link>
                     </form>
