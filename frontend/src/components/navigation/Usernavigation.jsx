@@ -1,7 +1,16 @@
 import { Link } from "react-router-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const UserNavigation = () => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      setUser(JSON.parse(storedUser)); // Parse and set user data
+    }
+  }, []);
+
   return (
     <header className="bg-[#F3F4F6] shadow-sm p-4">
       <div className="max-w-6xl mx-auto flex flex-col">
@@ -12,24 +21,31 @@ const UserNavigation = () => {
             </div>
             <h1 className="text-4xl font-[Poppins] font-bold text-[#000081] mt-2.5">JD HOMECARE</h1>
           </div>
-          
-          <div className="flex items-center space-x-4">
-            <Link to="/taskerform">
-              <button className="bg-white text-black border border-black px-4 py-2 rounded font-medium cursor-pointer hover:bg-amber-200 transition-colors duration-300 ease-in-out">
-                Become a Worker
+
+          <div className="flex items-center space-x-4 mt-2">
+            <div className="flex flex-col">
+              <p className="text-gray-700 font-medium">
+                {user ? `${user.firstName} ${user.lastName}` : "Guest"}
+              </p>
+              <Link to="/editprofile" className="text-blue-500 hover:text-blue-700 text-sm cursor-pointer text-right">
+                Edit Profile
+              </Link>
+              <button
+                onClick={() => {
+                  localStorage.removeItem("user");
+                  window.location.href = "/home";
+                }}
+                className="text-red-500 hover:text-red-700 text-sm cursor-pointer text-right"
+              >
+                Log out
               </button>
-            </Link>
-            {/* Profile Picture and Name Alignment */}
+            </div>
             <div className="flex items-center space-x-2">
               <img
                 src="/carpenter.jpg"
                 alt="User Profile"
                 className="h-14 w-14 rounded-full border border-gray-400 object-cover"
               />
-              <div className="flex flex-col">
-                <p className="text-gray-700 font-medium">Bembol Roco</p>
-                <Link to="/home" className="text-red-500 hover:text-red-700 text-sm cursor-pointer">Log out</Link>
-              </div>
             </div>
           </div>
         </div>
@@ -38,7 +54,7 @@ const UserNavigation = () => {
           <div className="text-[16px] text-gray-500">
             Home Service & Maintenance | Bacolod, Negros Occidental, Philippines
           </div>
-          
+
           <nav>
             <ul className="flex space-x-6 text-[16px]">
               <li>
@@ -54,6 +70,11 @@ const UserNavigation = () => {
               <li>
                 <Link to="/userservices" className="text-gray-700 font-medium hover:text-[#0d05d2]">
                   Services
+                </Link>
+              </li>
+              <li>
+                <Link to="/taskerform" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+                  Become a Worker
                 </Link>
               </li>
             </ul>
