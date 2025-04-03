@@ -33,7 +33,7 @@ const UserNavigation = () => {
               <button
                 onClick={() => {
                   localStorage.removeItem("user");
-                  window.location.href = "/home";
+                  window.location.href = "/";
                 }}
                 className="text-red-500 hover:text-red-700 text-sm cursor-pointer text-right"
               >

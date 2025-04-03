@@ -30,7 +30,7 @@ const Navigation = () => {
           
           <nav>
             <ul className="flex space-x-6 text-[16px]">
-              <li><Link to="/home" className="text-gray-700 font-medium hover:text-[#0d05d2]">Home</Link></li>
+              <li><Link to="/" className="text-gray-700 font-medium hover:text-[#0d05d2]">Home</Link></li>
               <li><Link to="#" className="text-gray-700 font-medium hover:text-[#0d05d2]">About</Link></li>
               <li><Link to="/services" className="text-gray-700 font-medium hover:text-[#0d05d2]">Services</Link></li>
             </ul>
