@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -7,6 +7,13 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        if (user) {
+            navigate("/userhome", { replace: true }); // Redirect logged-in users away from login
+        }
+    }, [navigate]);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -19,8 +26,9 @@ const Login = () => {
             });
 
             console.log("Login Success:", response.data);
-            localStorage.setItem("user", JSON.stringify(response.data.user)); // Store user data
-            navigate("/userhome"); // Redirect after login
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+
+            navigate("/userhome", { replace: true }); // Prevent going back
         } catch (err) {
             setError(err.response?.data?.message || "Login failed");
         }
@@ -33,7 +41,9 @@ const Login = () => {
                 <div className="w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col items-center">
                     <img src="/logo.png" alt="Logo" className="w-40 h-40 md:w-80 md:h-80" />
                     <h2 className="text-gray-900 text-2xl md:text-3xl font-semibold mb-2 font-[Poppins]">Log in</h2>
-                    <p className="text-gray-500 text-sm md:text-md text-center mb-6 md:mb-10">Connect with employers and find job opportunities easily.</p>
+                    <p className="text-gray-500 text-sm md:text-md text-center mb-6 md:mb-10">
+                        Connect with employers and find job opportunities easily.
+                    </p>
                     
                     {error && <p className="text-red-500 text-sm">{error}</p>}
                     
@@ -58,12 +68,16 @@ const Login = () => {
                             required
                         />
                     
-                        <button type="submit" className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer">Log in</button>
+                        <button type="submit" className="w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer">
+                            Log in
+                        </button>
                     </form>
                     
                     <div className="flex flex-col sm:flex-row justify-between mt-4 text-gray-600 text-sm w-full">
                         <Link to="/signup" className="hover:underline cursor-pointer">Create account</Link>
-                        <Link to="/forgotpassword" className="hover:underline sm:ml-auto mt-2 sm:mt-0 cursor-pointer">Forgot Password?</Link>
+                        <Link to="/forgotpassword" className="hover:underline sm:ml-auto mt-2 sm:mt-0 cursor-pointer">
+                            Forgot Password?
+                        </Link>
                     </div>
                 </div>
             </div>

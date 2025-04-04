@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom"; 
 import axios from "axios";
 
 const Signup = () => {
@@ -9,14 +9,36 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    const [loading, setLoading] = useState(false); // To show loading state
-    const [error, setError] = useState(""); // To show error messages
-    const navigate = useNavigate(); // Initialize useNavigate for programmatic navigation
+    const [loading, setLoading] = useState(false); 
+    const [error, setError] = useState(""); 
+    const [passwordStrength, setPasswordStrength] = useState("");
+    const navigate = useNavigate(); 
+
+    // Password strength checker
+    const evaluatePasswordStrength = (password) => {
+        if (password.length < 6) return "Weak";
+        if (/^[a-zA-Z]+$/.test(password) || /^[0-9]+$/.test(password)) return "Weak";
+        if (password.length >= 6 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password)) return "Normal";
+        if (password.length >= 8 && /[a-zA-Z]/.test(password) && /[0-9]/.test(password) && /[^a-zA-Z0-9]/.test(password)) return "Strong";
+        return "Weak";
+    };
+
+    useEffect(() => {
+        setPasswordStrength(evaluatePasswordStrength(password));
+    }, [password]);
 
     const handleSignup = async (e) => {
         e.preventDefault();
 
-        // Check if passwords match
+        if (!email.endsWith("@gmail.com")) {
+            return setError("Only Gmail addresses are allowed.");
+        }
+
+        const mobilePattern = /^[0-9]{11}$/;
+        if (!mobilePattern.test(mobile)) {
+            return setError("Mobile number must be exactly 11 digits.");
+        }
+
         if (password !== confirmPassword) {
             return alert("Passwords do not match!");
         }
@@ -29,20 +51,28 @@ const Signup = () => {
             password,
         };
 
-        setLoading(true); // Set loading state to true when starting the request
-        setError(""); // Reset any previous errors
+        setLoading(true); 
+        setError(""); 
 
         try {
-            // Make POST request to the backend API
             const response = await axios.post('http://localhost:3000/api/signup', userData);
-            console.log(response.data);  // Log the response or handle success
+            console.log(response.data);  
             alert('Signup successful!');
-            navigate('/login');  // Redirect to login page after successful signup
+            navigate('/login'); 
         } catch (error) {
             console.error(error);
-            setError(error.response?.data?.message || 'Error during signup'); // Set error message
+            setError(error.response?.data?.message || 'Error during signup'); 
         } finally {
-            setLoading(false); // Set loading state to false after the request is completed
+            setLoading(false); 
+        }
+    };
+
+    const getStrengthColor = (strength) => {
+        switch (strength) {
+            case "Weak": return "text-red-500";
+            case "Normal": return "text-yellow-500";
+            case "Strong": return "text-green-600";
+            default: return "";
         }
     };
 
@@ -57,7 +87,7 @@ const Signup = () => {
                     <h2 className="text-gray-900 text-2xl md:text-3xl font-semibold mb-2 font-[Poppins]">Sign Up</h2>
                     <p className="text-gray-500 text-sm md:text-md text-center mb-6 md:mb-10">Create an account and start your journey with us.</p>
                     
-                    {error && <p className="text-red-500 text-sm">{error}</p>}  {/* Display error if there's any */}
+                    {error && <p className="text-red-500 text-sm">{error}</p>}  
                     
                     <form className="w-full" onSubmit={handleSignup}>
                         <label className="text-gray-700 text-sm">First Name</label>
@@ -103,17 +133,22 @@ const Signup = () => {
                         <label className="text-gray-700 text-sm">Password</label>
                         <input 
                             type="password" 
-                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-3" 
+                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-1" 
                             placeholder="Enter your password" 
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
                         />
+                        {password && (
+                            <p className={`text-xs mt-1 mb-3 ${getStrengthColor(passwordStrength)}`}>
+                                Password Strength: {passwordStrength}
+                            </p>
+                        )}
                     
                         <label className="text-gray-700 text-sm">Confirm Password</label>
                         <input 
                             type="password" 
-                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-4 cursor-pointer" 
+                            className="w-full p-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-blue-500 mt-1 mb-4" 
                             placeholder="Confirm your password" 
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
@@ -123,7 +158,7 @@ const Signup = () => {
                         <button 
                             type="submit" 
                             className={`w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer ${loading ? 'bg-gray-400 cursor-not-allowed' : ''}`}
-                            disabled={loading}  // Disable the button while loading
+                            disabled={loading}  
                         >
                             {loading ? 'Signing Up...' : 'Sign Up'}
                         </button>

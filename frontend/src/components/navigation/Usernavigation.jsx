@@ -1,15 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const UserNavigation = () => {
   const [user, setUser] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser)); // Parse and set user data
+      setUser(JSON.parse(storedUser)); 
     }
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:3000/api/logout", {}, { withCredentials: true });
+
+      localStorage.removeItem("user"); 
+      navigate("/"); 
+
+      
+      window.location.reload();
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <header className="bg-[#F3F4F6] shadow-sm p-4">
@@ -24,25 +40,30 @@ const UserNavigation = () => {
 
           <div className="flex items-center space-x-4 mt-2">
             <div className="flex flex-col">
-              <p className="text-gray-700 font-medium">
-                {user ? `${user.firstName} ${user.lastName}` : "Guest"}
-              </p>
-              <Link to="/editprofile" className="text-blue-500 hover:text-blue-700 text-sm cursor-pointer text-right">
-                Edit Profile
-              </Link>
-              <button
-                onClick={() => {
-                  localStorage.removeItem("user");
-                  window.location.href = "/";
-                }}
-                className="text-red-500 hover:text-red-700 text-sm cursor-pointer text-right"
-              >
-                Log out
-              </button>
+             
+              {user ? (
+                <p className="text-gray-700 font-medium">{`${user.firstName} ${user.lastName}`}</p>
+              ) : (
+                <p className="text-gray-700 font-medium">Guest</p>
+              )}
+
+              {user && (
+                <>
+                  <Link to="/editprofile" className="text-blue-500 hover:text-blue-700 text-sm cursor-pointer text-right">
+                    Edit Profile
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="text-red-500 hover:text-red-700 text-sm cursor-pointer text-right"
+                  >
+                    Log out
+                  </button>
+                </>
+              )}
             </div>
             <div className="flex items-center space-x-2">
               <img
-                src="/carpenter.jpg"
+                src="/avatar.jpg"
                 alt="User Profile"
                 className="h-14 w-14 rounded-full border border-gray-400 object-cover"
               />
@@ -51,19 +72,19 @@ const UserNavigation = () => {
         </div>
 
         <div className="flex justify-between items-center">
-          <div className="text-[16px] text-gray-500">
+          <div className="text-[18px] text-gray-500">
             Home Service & Maintenance | Bacolod, Negros Occidental, Philippines
           </div>
 
           <nav>
-            <ul className="flex space-x-6 text-[16px]">
+            <ul className="flex space-x-6 text-[18px]">
               <li>
                 <Link to="/userhome" className="text-gray-700 font-medium hover:text-[#0d05d2]">
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="#" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+                <Link to="/userabout" className="text-gray-700 font-medium hover:text-[#0d05d2]">
                   About
                 </Link>
               </li>

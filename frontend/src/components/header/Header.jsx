@@ -31,10 +31,10 @@ const categories = {
     "Pipe Installation",
     "Bathroom Fittings",
     "Drain Cleaning & Unclogging",
-    "Water Tank Installation & Cleaning",
+    "Water Tank Installation",
     "Gas Pipeline Installation",
     "Septic Tank & Sewer Repair",
-    "Geyser & Water Heater Installation",
+    "Water Heater Installation",
     "Toilet & Sink Repair",
     "Kitchen Plumbing Solutions"
   ],
@@ -177,7 +177,7 @@ const Header = () => {
       
       
       <div className="flex flex-col items-center space-y-6 py-10">
-        <div className="flex flex-wrap justify-center gap-12">
+        <div className="flex flex-wrap justify-center gap-12 text-[20px]">
           {Object.keys(categories).map((category) => {
             const Icon =
               category === "Carpenter" ? FaHammer :
@@ -212,18 +212,22 @@ const Header = () => {
 
      
       <div className="w-full flex justify-center py-6 bg-[#F3F4F6]">
-        <div className="max-w-6xl w-full px-4">
-          <div className="flex justify-center">
-            <div className="flex flex-wrap justify-center gap-2">
-              {categories[selectedCategory].map((subcategory) => (
-                <button key={subcategory} className="border px-4 py-2 rounded-md text-[16px] cursor-pointer hover:bg-blue-200">
-                  {subcategory}
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+  <div className="max-w-6xl w-full px-4">
+    <div className="flex justify-center">
+      <div className="flex flex-wrap justify-center gap-4">
+        {categories[selectedCategory].map((subcategory) => (
+          <span
+            key={subcategory}
+            className="text-[20px] cursor-pointer hover:underline"
+          >
+            ⦁ {subcategory}
+          </span>
+        ))}
       </div>
+    </div>
+  </div>
+</div>
+
 
      
       <div className="flex justify-center items-center w-full py-12">
@@ -237,8 +241,8 @@ const Header = () => {
           </div>
           <div className="w-full md:w-1/2 px-6 text-center md:text-left">
             <h3 className="text-lg font-bold text-center text-gray-800">{selectedCategory}</h3>
-            <ul className="list-disc list-inside text-center mt-3 text-gray-700">
-              <li>Get expert help with {selectedCategory.toLowerCase()} services.</li>
+            <ul className="list-disc list-inside text-center mt-3 text-gray-700 text-[20px]">
+              <li>Get help with {selectedCategory.toLowerCase()} services.</li>
               <li>Book now to experience our convient services.</li>
             </ul>
           </div>
@@ -248,18 +252,18 @@ const Header = () => {
     
       <div className="w-full py-10 bg-[#F3F4F6]">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-gray-800 mb-8 text-center">Popular Works</h2>
+          <h2 className="text-[20px] font-bold text-gray-800 mb-8 text-center">Popular Works</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
             {popularProjects.map((project, index) => (
               <div 
                 key={index} 
-                className="relative group rounded-lg overflow-hidden h-64 shadow-lg hover:shadow-xl transition-shadow"
+                className="relative group rounded-lg overflow-hidden h-96 shadow-lg hover:shadow-xl transition-shadow"
                 style={{ backgroundImage: `url(${project.image})`, backgroundSize: "cover", backgroundPosition: "center" }}
               >
                 <div className="absolute inset-0 bg-black opacity-40 group-hover:opacity-50 transition-opacity cursor-pointer"></div>
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
                   <h3 className="font-bold text-lg mb-2">{project.name}</h3>
-                  <p className="text-sm font-semibold">Service Rate / Hour: {project.rate}</p>
+                  <p className="text-[14px] font-semibold">Service Rate / Hour: {project.rate}</p>
                   <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold px-4 py-2 rounded-lg mt-2">
                     Book A Schedule Now
                   </button>
@@ -273,7 +277,7 @@ const Header = () => {
       
       <div className="w-full py-16 bg-[#F3F4F6]">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="text-xl font-bold text-center text-gray-800 mb-12">JD HOMECARE FAQs</h2>
+          <h2 className="text-[20px] font-bold text-center text-gray-800 mb-12">JD HOMECARE FAQs</h2>
           <div className="space-y-6">
             {faqItems.map((item, index) => (
               <div key={index} className="border-b border-gray-200 pb-6">
@@ -281,7 +285,7 @@ const Header = () => {
                   className="flex justify-between items-center w-full text-left cursor-pointer" 
                   onClick={() => toggleFAQ(index)}
                 >
-                  <h3 className="text-lg font-semibold text-gray-800 hover:text-[#3f42ff] transition-colors">
+                  <h3 className="text-[20px] font-semibold text-gray-800 hover:text-[#3f42ff] transition-colors">
                     {item.question}
                   </h3>
                   <span className="text-gray-500 text-xl ml-4">

@@ -5,32 +5,77 @@ import Footer from "../../components/footer/Footer";
 const services = [
   {
     title: "Carpenter",
-    description: "Get professional carpentry services for your home and office.",
-    services: ["Furniture Repair", "Wood Polishing", "Door Fixing", "Cabinet Making"],
+    description: "Get carpentry services for your home and office.",
+    services: ["General Carpentry",
+    "Furniture Repair",
+    "Wood Polishing",
+    "Door & Window Fitting",
+    "Custom Furniture Design",
+    "Modular Kitchen Installation",
+    "Flooring & Decking",
+    "Cabinet & Wardrobe Fixing",
+    "Wall Paneling & False Ceiling",
+    "Wood Restoration & Refinishing"],
     image: "/carpenter3.jpg"
   },
   {
     title: "Electrician",
-    description: "Hire an expert electrician for all electrical needs.",
-    services: ["Wiring & Installation", "Light Fixture Repair", "Electrical Panel Upgrade", "Ceiling Fan Installation"],
+    description: "Hire an electrician for all electrical needs.",
+    services: ["Wiring Repair",
+    "Appliance Installation",
+    "Lighting Fixtures",
+    "Circuit Breaker & Fuse Repair",
+    "CCTV & Security System Setup",
+    "Fan & Exhaust Installation",
+    "Inverter & Battery Setup",
+    "Switchboard & Socket Repair",
+    "Electrical Safety Inspection",
+    "Smart Home Automation"],
     image: "electrician3.jpg"
   },
   {
     title: "Plumber",
     description: "Reliable plumbing services to fix leaks and installations.",
-    services: ["Leak Repair", "Drain Cleaning", "Toilet Fixing", "Pipe Installation"],
+    services: ["Leak Fixing",
+    "Pipe Installation",
+    "Bathroom Fittings",
+    "Drain Cleaning & Unclogging",
+    "Water Tank Installation",
+    "Gas Pipeline Installation",
+    "Septic Tank & Sewer Repair",
+    "Water Heater Installation",
+    "Toilet & Sink Repair",
+    "Kitchen Plumbing Solutions"],
     image: "plumber3.jpg"
   },
   {
     title: "Car Washer",
-    description: "Professional car washing and detailing services.",
-    services: ["Exterior Wash", "Interior Cleaning", "Wax & Polish", "Engine Cleaning"],
+    description: "Car washing and detailing services.",
+    services: ["Exterior Wash",
+    "Interior Cleaning",
+    "Wax & Polish",
+    "Underbody Cleaning",
+    "Engine Bay Cleaning",
+    "Headlight Restoration",
+    "Ceramic Coating",
+    "Tire & Rim Cleaning",
+    "Vacuum & Odor Removal",
+    "Paint Protection Film Application"],
     image: "carwash3.jpg"
   },
   {
     title: "Laundry",
     description: "Efficient laundry and dry cleaning services.",
-    services: ["Washing & Ironing", "Dry Cleaning", "Stain Removal", "Clothing Alterations"],
+    services: ["Dry Cleaning",
+    "Ironing",
+    "Wash & Fold",
+    "Steam Pressing",
+    "Stain Removal Treatment",
+    "Curtains & Upholstery Cleaning",
+    "Delicate Fabric Care",
+    "Shoe & Leather Cleaning",
+    "Express Same-Day Laundry",
+    "Eco-Friendly Washing"],
     image: "laundry3.jpg"
   }
 ];
@@ -86,7 +131,7 @@ const Services = () => {
       </div>
 
       <div className="py-10 px-5">
-  <h2 className="text-center text-lg font-bold mb-6">Hire Trusted Workers</h2>
+  <h2 className="text-center text-[30px] font-bold mb-6">Hire Trusted Workers</h2>
   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center max-w-5xl mx-auto">
     {services.map((service, index) => (
       <div key={index} className="bg-white rounded-lg shadow-md p-5">

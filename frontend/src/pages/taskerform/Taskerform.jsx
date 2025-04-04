@@ -35,7 +35,7 @@ const TaskerForm = () => {
     <div className="bg-[#F3F4F6] font-sans min-h-screen">
       <Navigation />
       
-      {/* Hero Section with Image Slider */}
+    
       <div 
         className="relative w-full h-7/12 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 flex flex-col justify-center items-center" 
         style={{ backgroundImage: `url(${heroImages[currentImageIndex]})`, backgroundSize: "cover", opacity: fade ? 1 : 0 }}
