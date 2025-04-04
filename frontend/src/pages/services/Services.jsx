@@ -123,9 +123,17 @@ const Services = () => {
               placeholder="What do you need help with?"
               className="border p-3 w-2/3 rounded"
             />
-            <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out font-[Poppins] text-white px-5 py-3 rounded ml-2">
-              Search
-            </button>
+            <button className="relative inline-flex items-center justify-center px-5 py-3 overflow-hidden bg-[#000081] font-[Poppins] transition duration-300 ease-out rounded-lg shadow-md group ml-2">
+  <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#0d05d2] group-hover:translate-x-0 ease">
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+    </svg>
+  </span>
+  <span className="absolute flex items-center justify-center w-full h-full text-base font-semibold text-white transition-all duration-300 transform group-hover:translate-x-full ease">
+    Search
+  </span>
+  <span className="relative text-base font-semibold text-transparent">Search</span>
+</button>
           </div>
         </section>
       </div>
