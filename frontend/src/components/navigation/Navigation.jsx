@@ -16,8 +16,20 @@ const Navigation = () => {
           </div>
           
           <div className="flex items-center space-x-4 cursor-pointer">
-            <Link to="/login"><button className=" bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out text-white px-4 py-2 rounded font-medium cursor-pointer">Log in</button></Link>
-            <Link to="/signup"><button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out text-white px-4 py-2 rounded font-medium cursor-pointer">Sign up</button></Link>
+          <Link to="/login">
+  <button className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#000081] hover:bg-gradient-to-r hover:from-[#0d05d2] hover:to-[#0d05d2] text-white hover:ring-2 hover:ring-offset-2 hover:ring-[#0d05d2] transition-all ease-out duration-300 cursor-pointer">
+    <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+    <span className="relative text-base font-semibold">Log in</span>
+  </button>
+</Link>
+
+<Link to="/signup">
+<button className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#000081] hover:bg-gradient-to-r hover:from-[#0d05d2] hover:to-[#0d05d2] text-white hover:ring-2 hover:ring-offset-2 hover:ring-[#0d05d2] transition-all ease-out duration-300 cursor-pointer">
+    <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+    <span className="relative text-base font-semibold">Sign up</span>
+  </button>
+</Link>
+
           </div>
         </div>
 

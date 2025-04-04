@@ -81,14 +81,14 @@ const heroImages = [
 ];
 
 const popularProjects = [
-  { name: "Furniture Repair", image: "/grid1.jpg", rate: "₱300 - ₱500" },
-  { name: "Wiring Repair", image: "/grid2.jpg", rate: "₱400 - ₱600" },
-  { name: "Leak Fixing", image: "/grid3.jpg", rate: "₱350 - ₱550" },
-  { name: "Exterior Wash", image: "/grid4.jpg", rate: "₱250 - ₱400" },
-  { name: "Dry Cleaning", image: "/grid5.jpg", rate: "₱200 - ₱350" },
-  { name: "Pipe Installation", image: "/grid6.jpg", rate: "₱450 - ₱700" },
-  { name: "Wood Polishing", image: "/grid7.jpg", rate: "₱350 - ₱500" },
-  { name: "Lighting Fixtures", image: "/grid8.jpg", rate: "₱300 - ₱450" }
+  { name: "Furniture Repair", image: "/grid1.jpg", rate: "₱300-₱500" },
+  { name: "Wiring Repair", image: "/grid2.jpg", rate: "₱400-₱600" },
+  { name: "Leak Fixing", image: "/grid3.jpg", rate: "₱350-₱550" },
+  { name: "Exterior Wash", image: "/grid4.jpg", rate: "₱250-₱400" },
+  { name: "Dry Cleaning", image: "/grid5.jpg", rate: "₱200-₱350" },
+  { name: "Pipe Installation", image: "/grid6.jpg", rate: "₱450-₱700" },
+  { name: "Wood Polishing", image: "/grid7.jpg", rate: "₱350-₱500" },
+  { name: "Lighting Fixtures", image: "/grid8.jpg", rate: "₱300-₱450" }
 ];
 
 
@@ -168,9 +168,18 @@ const Header = () => {
               placeholder="What do you need help with?"
               className="border p-3 w-2/3 rounded"
             />
-            <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out font-[Poppins] text-white px-5 py-3 rounded ml-2">
-              Search
-            </button>
+            <button className="relative inline-flex items-center justify-center px-5 py-3 overflow-hidden bg-[#000081] font-[Poppins] transition duration-300 ease-out rounded-lg shadow-md group ml-2">
+  <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#0d05d2] group-hover:translate-x-0 ease">
+    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+    </svg>
+  </span>
+  <span className="absolute flex items-center justify-center w-full h-full text-base font-semibold text-white transition-all duration-300 transform group-hover:translate-x-full ease">
+    Search
+  </span>
+  <span className="relative text-base font-semibold text-transparent">Search</span>
+</button>
+
           </div>
         </section>
       </div>
@@ -194,12 +203,12 @@ const Header = () => {
               >
                 <Icon
                   className={`text-3xl mx-auto ${
-                    selectedCategory === category ? "text-[#2218ff]" : "text-gray-500"
+                    selectedCategory === category ? "text-[#000081]" : "text-gray-500"
                   }`}
                 />
                 <p
                   className={`text-md font-semibold ${
-                    selectedCategory === category ? "text-[#2218ff]" : "text-gray-700"
+                    selectedCategory === category ? "text-[#000081]" : "text-gray-700"
                   }`}
                 >
                   {category}
@@ -264,9 +273,11 @@ const Header = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
                   <h3 className="font-bold text-lg mb-2">{project.name}</h3>
                   <p className="text-[14px] font-semibold">Service Rate / Hour: {project.rate}</p>
-                  <button className="bg-[#3f42ff] hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer text-white font-semibold px-4 py-2 rounded-lg mt-2">
-                    Book A Schedule Now
-                  </button>
+                  <button className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#000081] hover:bg-gradient-to-r hover:from-[#0d05d2] hover:to-[#0d05d2] text-white hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 transition-all ease-out duration-300 cursor-pointer font-semibold mt-2">
+  <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+  <span className="relative text-base font-semibold">Book A Schedule Now</span>
+</button>
+
                 </div>
               </div>
             ))}
@@ -282,10 +293,10 @@ const Header = () => {
             {faqItems.map((item, index) => (
               <div key={index} className="border-b border-gray-200 pb-6">
                 <button
-                  className="flex justify-between items-center w-full text-left cursor-pointer" 
+                  className="flex justify-between items-center w-full text-left" 
                   onClick={() => toggleFAQ(index)}
                 >
-                  <h3 className="text-[20px] font-semibold text-gray-800 hover:text-[#3f42ff] transition-colors">
+                  <h3 className="text-[20px] font-semibold text-gray-800 hover:text-[#000081] transition-colors cursor-pointer">
                     {item.question}
                   </h3>
                   <span className="text-gray-500 text-xl ml-4">
@@ -293,7 +304,7 @@ const Header = () => {
                   </span>
                 </button>
                 {activeIndex === index && (
-                  <div className="mt-4 text-gray-600">
+                  <div className="mt-4 text-gray-600 text-[20px]">
                     <p>{item.answer}</p>
                   </div>
                 )}

@@ -11,6 +11,7 @@ import TaskerForm from "./pages/taskerform/Taskerform";
 import ProtectedRoute from "./components/protectedroutes/ProtectedRoutes";
 import About from "./pages/about/About";
 import UserAbout from "./pages/about/Userabout";
+import AdminLogin from "./pages/admin/Adminlogin";
 
 function App() {
   return (
@@ -25,9 +26,8 @@ function App() {
         <Route path="/taskerform" element={<TaskerForm />} />
         <Route path="/about" element={<About />} />
         <Route path="/userabout" element={<UserAbout />} />
-        {/* Protect user routes */}
+        <Route path="/adminlogin" element={<AdminLogin />} /> 
         <Route path="/userhome" element={<ProtectedRoute element={<UserHome />} />} />
-
       </Routes>
     </Router>
   );

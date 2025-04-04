@@ -40,7 +40,7 @@ const Login = () => {
             <div className="flex justify-center items-center w-full md:w-1/2 bg-white shadow-lg p-6 md:p-8">
                 <div className="w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col items-center">
                     <img src="/logo.png" alt="Logo" className="w-40 h-40 md:w-80 md:h-80" />
-                    <h2 className="text-gray-900 text-2xl md:text-3xl font-semibold mb-2 font-[Poppins]">Log in</h2>
+                    <h2 className="text-gray-900 text-2xl md:text-3xl font-semibold mb-2 font-[Poppins]">Welcome</h2>
                     <p className="text-gray-500 text-sm md:text-md text-center mb-6 md:mb-10">
                         Connect with employers and find job opportunities easily.
                     </p>

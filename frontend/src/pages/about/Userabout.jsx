@@ -8,7 +8,7 @@ const UserAbout = () => {
         <Navigation></Navigation>
    
       <div
-        className="relative h-96 flex items-center justify-center text-white text-center px-4"
+        className="relative h-[227px] flex items-center justify-center text-white text-center px-4"
         style={{
           backgroundImage: "url('/homerepair.jpg')",
           backgroundSize: "cover",
@@ -16,7 +16,7 @@ const UserAbout = () => {
         }}
       >
         <h1 className="text-4xl md:text-5xl font-bold drop-shadow-lg">
-          JD HomeCare: Quality Home Services You Can Trust
+          Quality Home Services You Can Trust
         </h1>
       </div>
       
