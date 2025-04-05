@@ -155,13 +155,24 @@ const Signup = () => {
                             required
                         />
                     
-                        <button 
-                            type="submit" 
-                            className={`w-full bg-[#3f42ff] text-white p-2 rounded-md font-semibold hover:bg-[#0d05d2] transition-colors duration-300 ease-in-out cursor-pointer ${loading ? 'bg-gray-400 cursor-not-allowed' : ''}`}
-                            disabled={loading}  
-                        >
-                            {loading ? 'Signing Up...' : 'Sign Up'}
-                        </button>
+                    <button 
+  type="submit" 
+  className={`relative w-full rounded px-5 py-2.5 overflow-hidden group font-semibold text-white transition-all ease-out duration-300 cursor-pointer ${
+    loading 
+      ? 'bg-gray-400 cursor-not-allowed' 
+      : 'bg-[#000081] hover:bg-gradient-to-r hover:from-[#000081] hover:to-[#0d05d2] hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400'
+  }`}
+  disabled={loading}
+>
+  {!loading && (
+    <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+  )}
+  <span className="relative text-base font-semibold">
+    {loading ? 'Signing Up...' : 'Sign Up'}
+  </span>
+</button>
+
+
                     </form>
                     
                     <div className="flex flex-col sm:flex-row justify-between mt-4 text-gray-600 text-sm w-full">

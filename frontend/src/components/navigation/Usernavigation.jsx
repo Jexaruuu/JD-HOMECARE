@@ -77,29 +77,34 @@ const UserNavigation = () => {
           </div>
 
           <nav>
-            <ul className="flex space-x-6 text-[18px]">
-              <li>
-                <Link to="/userhome" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/userabout" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/userservices" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link to="/taskerform" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-                  Become a Worker
-                </Link>
-              </li>
-            </ul>
-          </nav>
+  <ul className="flex space-x-6 text-[18px]">
+    <li className="relative group w-max">
+      <Link to="/userhome" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+        Home
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+      </Link>
+    </li>
+    <li className="relative group w-max">
+      <Link to="/userabout" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+        About
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+      </Link>
+    </li>
+    <li className="relative group w-max">
+      <Link to="/userservices" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+        Services
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+      </Link>
+    </li>
+    <li className="relative group w-max">
+      <Link to="/taskerform" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+        Become a Worker
+        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+      </Link>
+    </li>
+  </ul>
+</nav>
+
         </div>
       </div>
     </header>
