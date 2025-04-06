@@ -88,7 +88,7 @@ const heroImages = [
     "/laundry2.jpg"
   ];
 
-const UserServices = () => {
+const BookService = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(true);
 
@@ -148,4 +148,4 @@ const UserServices = () => {
   );
 };
 
-export default UserServices;
+export default BookService;

@@ -36,7 +36,7 @@ const Navigation = () => {
         
   
         <div className="flex justify-between items-center">
-          <div className="text-[18px] text-gray-500">
+          <div className="text-[14px] text-gray-500">
             Home Service & Maintenance | Bacolod, Negros Occidental, Philippines
           </div>
           
