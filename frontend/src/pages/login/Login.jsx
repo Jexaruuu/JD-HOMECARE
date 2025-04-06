@@ -11,7 +11,7 @@ const Login = () => {
     useEffect(() => {
         const user = localStorage.getItem("user");
         if (user) {
-            navigate("/userhome", { replace: true }); // Redirect logged-in users away from login
+            navigate("/userhome", { replace: true }); 
         }
     }, [navigate]);
 
@@ -28,7 +28,7 @@ const Login = () => {
             console.log("Login Success:", response.data);
             localStorage.setItem("user", JSON.stringify(response.data.user));
 
-            navigate("/userhome", { replace: true }); // Prevent going back
+            navigate("/userhome", { replace: true }); 
         } catch (err) {
             setError(err.response?.data?.message || "Login failed");
         }

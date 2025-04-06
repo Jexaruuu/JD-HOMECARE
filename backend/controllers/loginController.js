@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const db = require('../db'); // Import the database connection
+const db = require('../db'); 
 
 const login = async (req, res) => {
     const { email, password } = req.body;
@@ -21,14 +21,14 @@ const login = async (req, res) => {
             return res.status(401).json({ message: "Invalid email or password" });
         }
 
-        // Successful login
+     
         res.status(200).json({ 
             message: "Login successful", 
             user: { 
                 id: user[0].id, 
                 email: user[0].email, 
                 firstName: user[0].first_name, 
-                lastName: user[0].last_name // Ensure lastName is included
+                lastName: user[0].last_name 
             } 
         });
 

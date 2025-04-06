@@ -17,7 +17,7 @@ const Signup = () => {
     const [formErrors, setFormErrors] = useState({});
     const navigate = useNavigate(); 
 
-    // Handle input changes
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData(prev => ({
@@ -25,7 +25,7 @@ const Signup = () => {
             [name]: value
         }));
 
-        // Clear error when user types
+    
         if (formErrors[name]) {
             setFormErrors(prev => ({
                 ...prev,
@@ -34,7 +34,7 @@ const Signup = () => {
         }
     };
 
-    // Password strength checker
+  
     const evaluatePasswordStrength = (password) => {
         if (!password) return "";
         if (password.length < 6) return "Weak";
@@ -44,7 +44,7 @@ const Signup = () => {
         return "Weak";
     };
 
-    // Validate form
+
     const validateForm = () => {
         const errors = {};
         let isValid = true;

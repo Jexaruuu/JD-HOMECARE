@@ -4,7 +4,7 @@ const logout = (req, res) => {
             console.error("Logout error:", err);
             return res.status(500).json({ message: "Logout failed" });
         }
-        res.clearCookie("connect.sid"); // Clear session cookie
+        res.clearCookie("connect.sid"); 
         res.status(200).json({ message: "Logout successful" });
     });
 };
