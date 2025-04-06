@@ -12,6 +12,7 @@ import ProtectedRoute from "./components/protectedroutes/ProtectedRoutes";
 import About from "./pages/about/About";
 import UserAbout from "./pages/about/Userabout";
 import AdminLogin from "./pages/admin/Adminlogin";
+import AdminSignup from "./pages/admin/Adminsignup";
 import EditProfile from "./pages/editprofile/Editprofile";
 
 function App() {
@@ -28,6 +29,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/userabout" element={<UserAbout />} />
         <Route path="/adminlogin" element={<AdminLogin />} /> 
+        <Route path="/adminsignup" element={<AdminSignup />} /> 
         <Route path='/editprofile' element={<EditProfile />} />
         <Route path="/userhome" element={<ProtectedRoute element={<UserHome />} />} />
       </Routes>
