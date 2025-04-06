@@ -107,7 +107,7 @@ const Services = () => {
     <div className="bg-gray-100 font-sans">
       <Navigation />
       <div 
-        className="relative w-full h-7/12 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 flex flex-col justify-center items-center" 
+        className="relative w-full h-96 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 flex flex-col justify-center items-center" 
         style={{ backgroundImage: `url(${heroImages[currentImageIndex]})`, backgroundSize: "cover", opacity: fade ? 1 : 0 }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
@@ -116,24 +116,6 @@ const Services = () => {
         <section className="relative text-center flex flex-col justify-center items-center text-white w-full h-auto py-10 z-10">
           <div className="bg-opacity-50 px-6 py-4 rounded">
             <h2 className="text-4xl font-bold">Book trusted home help today</h2>
-          </div>
-          <div className="mt-6 flex justify-center w-full max-w-lg">
-            <input
-              type="text"
-              placeholder="What do you need help with?"
-              className="border p-3 w-2/3 rounded"
-            />
-            <button className="relative inline-flex items-center justify-center px-5 py-3 overflow-hidden bg-[#000081] font-[Poppins] transition duration-300 ease-out rounded-lg shadow-md group ml-2">
-  <span className="absolute inset-0 flex items-center justify-center w-full h-full text-white duration-300 -translate-x-full bg-[#0d05d2] group-hover:translate-x-0 ease">
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
-    </svg>
-  </span>
-  <span className="absolute flex items-center justify-center w-full h-full text-base font-semibold text-white transition-all duration-300 transform group-hover:translate-x-full ease">
-    Search
-  </span>
-  <span className="relative text-base font-semibold text-transparent">Search</span>
-</button>
           </div>
         </section>
       </div>

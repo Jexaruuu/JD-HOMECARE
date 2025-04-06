@@ -49,15 +49,8 @@ const UserNavigation = () => {
 
               {user && (
                 <>
-                  <Link to="/editprofile" className="text-blue-500 hover:text-blue-700 text-sm cursor-pointer text-right">
-                    Edit Profile
-                  </Link>
-                  <button
-                    onClick={handleLogout}
-                    className="text-red-500 hover:text-red-700 text-sm cursor-pointer text-right"
-                  >
-                    Log out
-                  </button>
+                  <Link to="/editprofile" className="text-blue-500 hover:text-blue-700 text-sm cursor-pointer text-right">Edit Profile</Link>
+                  <button onClick={handleLogout} className="text-red-500 hover:text-red-700 text-sm cursor-pointer text-right">Log out</button>
                 </>
               )}
             </div>

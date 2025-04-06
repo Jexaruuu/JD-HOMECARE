@@ -8,7 +8,7 @@ const UserAbout = () => {
         <Navigation></Navigation>
    
       <div
-        className="relative h-[227px] flex items-center justify-center text-white text-center px-4"
+        className="relative h-96 flex items-center justify-center text-white text-center px-4"
         style={{
           backgroundImage: "url('/homerepair.jpg')",
           backgroundSize: "cover",

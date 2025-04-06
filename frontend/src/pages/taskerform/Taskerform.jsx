@@ -4,7 +4,7 @@ import Navigation from "../../components/navigation/Usernavigation";
 import Footer from "../../components/footer/Footer";
 
 const TaskerForm = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch } = useForm();
   const onSubmit = (data) => console.log(data);
   
   const heroImages = [
@@ -18,6 +18,57 @@ const TaskerForm = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [fade, setFade] = useState(true);
   const [activeSection, setActiveSection] = useState("personal");
+
+  const selectedJobType = watch("jobType");
+
+  // Service categories based on job type
+  const serviceCategories = {
+    carpenter: [
+      "Furniture Repair", 
+      "Furniture Assembly", 
+      "Cabinet Installation", 
+      "Wood Polishing", 
+      "Shelving Installation", 
+      "Door Repair/Installation",
+      "Wooden Floor Installation/Repair"
+    ],
+    electrician: [
+      "Wiring Repair", 
+      "Lighting Fixtures", 
+      "Electrical Panel Service", 
+      "Ceiling Fan Installation", 
+      "Outlet/Switch Installation", 
+      "Home Automation Setup",
+      "Electric Appliance Repair"
+    ],
+    plumber: [
+      "Leak Fixing", 
+      "Pipe Installation", 
+      "Toilet Repair/Installation", 
+      "Faucet Repair/Installation", 
+      "Water Heater Services", 
+      "Drain Cleaning",
+      "Shower/Bathtub Installation"
+    ],
+    carwasher: [
+      "Exterior Wash", 
+      "Interior Detailing", 
+      "Full Detailing", 
+      "Polish & Wax", 
+      "Scratch Removal", 
+      "Headlight Restoration",
+      "Engine Bay Cleaning"
+    ],
+    laundry: [
+      "Dry Cleaning", 
+      "Wash & Fold", 
+      "Ironing Service", 
+      "Stain Removal", 
+      "Delicates Cleaning", 
+      "Comforter/Bedding Cleaning",
+      "Business Uniform Service"
+    ]
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -69,7 +120,7 @@ const TaskerForm = () => {
       {/* Application Form Container */}
       <div className="max-w-6xl mx-auto px-4 py-8">
         {/* Form Navigation */}
-        <div className="bg-white rounded-lg shadow-sm mb-8 sticky top-4 z-10">
+        <div className="bg-white rounded-lg shadow-sm mb-8 sticky top-4 z-10 flex justify-center">
           <nav className="flex overflow-x-auto">
             <button
               onClick={() => scrollToSection("personal")}
@@ -241,6 +292,30 @@ const TaskerForm = () => {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Job Type Selection */}
+              <div>
+                <label className="block font-medium text-gray-700 mb-1">
+                  Job Type <span className="text-red-500">*</span>
+                </label>
+                <select 
+                  {...register("jobType", { required: "Please select a job type" })} 
+                  className={`w-full border ${errors.jobType ? "border-red-300" : "border-gray-300"} p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                >
+                  <option value="">Select your job type...</option>
+                  <option value="carpenter">Carpenter</option>
+                  <option value="electrician">Electrician</option>
+                  <option value="plumber">Plumber</option>
+                  <option value="carwasher">Car Washer</option>
+                  <option value="laundry">Laundry Service</option>
+                </select>
+                {errors.jobType && (
+                  <p className="text-red-500 text-sm mt-1 flex items-center">
+                    <i className="fas fa-exclamation-circle mr-1"></i> {errors.jobType.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Service Category (Conditional based on job type) */}
               <div>
                 <label className="block font-medium text-gray-700 mb-1">
                   Service Category <span className="text-red-500">*</span>
@@ -248,16 +323,14 @@ const TaskerForm = () => {
                 <select 
                   {...register("serviceCategory", { required: "Please select a service category" })} 
                   className={`w-full border ${errors.serviceCategory ? "border-red-300" : "border-gray-300"} p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all`}
+                  disabled={!selectedJobType}
                 >
                   <option value="">Select your service...</option>
-                  <option value="Furniture Repair">Furniture Repair</option>
-                  <option value="Wiring Repair">Wiring Repair</option>
-                  <option value="Leak Fixing">Leak Fixing</option>
-                  <option value="Exterior Wash">Exterior Wash</option>
-                  <option value="Dry Cleaning">Dry Cleaning</option>
-                  <option value="Pipe Installation">Pipe Installation</option>
-                  <option value="Wood Polishing">Wood Polishing</option>
-                  <option value="Lighting Fixtures">Lighting Fixtures</option>
+                  {selectedJobType && serviceCategories[selectedJobType] && 
+                    serviceCategories[selectedJobType].map((category, index) => (
+                      <option key={index} value={category}>{category}</option>
+                    ))
+                  }
                 </select>
                 {errors.serviceCategory && (
                   <p className="text-red-500 text-sm mt-1 flex items-center">
@@ -702,12 +775,15 @@ const TaskerForm = () => {
 
           {/* Form Submission */}
           <div className="text-center pt-8">
-            <button 
-              type="submit" 
-              className="bg-gradient-to-r from-blue-600 to-blue-800 hover:from-blue-700 hover:to-blue-900 text-white font-bold py-4 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105"
-            >
+          <button 
+            type="submit" 
+            className="relative overflow-hidden group bg-[#000081] hover:bg-gradient-to-r hover:from-[#000081] hover:to-[#0d05d2] text-white font-bold py-4 px-8 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:ring-2 hover:ring-offset-2 hover:ring-blue-400"
+          >
+            <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+            <span className="relative">
               <i className="fas fa-paper-plane mr-2"></i> Submit Application
-            </button>
+            </span>
+          </button>
             <p className="text-gray-500 mt-4 text-sm">
               By submitting this form, you confirm that all information provided is accurate and complete.
             </p>

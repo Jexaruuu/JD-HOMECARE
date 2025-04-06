@@ -1,17 +1,16 @@
-// signupController.js
 const bcrypt = require('bcrypt');
-const db = require('../db'); // Import the db connection
+const db = require('../db'); 
 
-// Controller for user sign up
+
 const signup = async (req, res) => {
     const { firstName, lastName, mobile, email, password } = req.body;
 
-    // Basic validation
+
     if (!firstName || !lastName || !mobile || !email || !password) {
         return res.status(400).json({ message: "All fields are required" });
     }
 
-    // Check if the user already exists (either by email or mobile)
+
     try {
         const [existingUser] = await db.execute('SELECT * FROM users WHERE email = ? OR mobile = ?', [email, mobile]);
 
@@ -19,10 +18,10 @@ const signup = async (req, res) => {
             return res.status(409).json({ message: "User with this email or mobile already exists" });
         }
 
-        // Hash the password
+   
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Insert user into database
+    
         const [result] = await db.execute(
             'INSERT INTO users (first_name, last_name, mobile, email, password) VALUES (?, ?, ?, ?, ?)', 
             [firstName, lastName, mobile, email, hashedPassword]
