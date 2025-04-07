@@ -134,9 +134,14 @@ const BookService = () => {
           ))}
         </ul>
         <div className="mt-auto">
-          <button className="bg-yellow-500 hover:bg-yellow-600 text-white font-semibold py-2 px-4 rounded w-full">
-            Hire Now
-          </button>
+        <button
+  class="relative rounded px-4 py-2 overflow-hidden group  bg-[#000081] 
+             hover:bg-gradient-to-r hover:from-[#000081] hover:to-[#0d05d2] 
+             text-white hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 transition-all ease-out duration-300 w-full">
+  <span
+    class="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+  <span class="relative text-base font-semibold">Hire Now</span>
+</button>
         </div>
       </div>
     ))}

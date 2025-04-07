@@ -56,7 +56,7 @@ const UserNavigation = () => {
             </div>
             <div className="flex items-center space-x-2">
               <img
-                src="/avatar.jpg"
+                src="/profile.png"
                 alt="User Profile"
                 className="h-14 w-14 rounded-full border border-gray-400 object-cover"
               />
