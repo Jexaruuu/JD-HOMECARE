@@ -4,6 +4,24 @@ import axios from "axios";
 import Navigation from "../../components/navigation/Usernavigation";
 import Footer from "../../components/footer/Footer";
 
+const handleDeleteAccount = async () => {
+    const confirmDelete = confirm("Are you sure you want to delete your account? This cannot be undone.");
+    if (!confirmDelete) return;
+
+    try {
+        await axios.delete(`http://localhost:3000/api/user/${userId}`);
+        alert("Account deleted successfully!");
+
+        // Clear localStorage and navigate to homepage or login
+        localStorage.removeItem("userId");
+        localStorage.removeItem("user");
+        navigate("/login"); // or wherever you want
+    } catch (error) {
+        console.error(error);
+        setError(error.response?.data?.message || "Error deleting account");
+    }
+};
+
 const EditProfile = () => {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -243,14 +261,16 @@ const EditProfile = () => {
                         </button>
                         
                         <div className="space-x-4">
-                            <button
-                                type="button"
-                                className="relative overflow-hidden group bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow transition-all duration-300 ease-in-out transform hover:scale-105"
-                            >
-                                <span className="relative">
-                                    <i className="fas fa-trash-alt mr-2"></i> Delete Account
-                                </span>
-                            </button>
+                        <button
+    type="button"
+    onClick={handleDeleteAccount}
+    className="relative overflow-hidden group bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow transition-all duration-300 ease-in-out transform hover:scale-105"
+>
+    <span className="relative">
+        <i className="fas fa-trash-alt mr-2"></i> Delete Account
+    </span>
+</button>
+
                             
                             <button
                                 type="submit"

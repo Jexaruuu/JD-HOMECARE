@@ -5,6 +5,7 @@ const db = require('./db');
 const signupRoutes = require('./routes/signupRoutes'); 
 const loginRoutes = require('./routes/loginRoutes'); 
 const logoutRoutes = require('./routes/logoutRoutes'); 
+const userRoutes = require('./routes/userRoutes');
 
 
 
@@ -27,6 +28,7 @@ app.use(session({
 app.use('/api', signupRoutes);
 app.use('/api', loginRoutes);
 app.use('/api', logoutRoutes); 
+app.use('/api', userRoutes);
 
 
 
