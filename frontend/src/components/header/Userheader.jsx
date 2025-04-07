@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaHammer, FaBolt, FaWrench, FaCar, FaTshirt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const categories = {
   Carpenter: ["General Carpentry", "Furniture Repair", "Wood Polishing", "Door & Window Fitting", "Custom Furniture Design", "Modular Kitchen Installation", "Flooring & Decking", "Cabinet & Wardrobe Fixing", "Wall Paneling & False Ceiling", "Wood Restoration & Refinishing"],
@@ -129,7 +130,7 @@ const Header = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
                   <h3 className="font-bold text-lg mb-2">{proj.name}</h3>
                   <p className="text-[14px] font-semibold">Service Rate / Hour: {proj.rate}</p>
-                  <button
+              <Link to="/bookservices"><button
   className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#000081] text-white mt-2 
              hover:bg-gradient-to-r hover:from-[#000081] hover:to-[#0d05d2] 
              hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 
@@ -142,7 +143,7 @@ const Header = () => {
   <span className="relative text-base font-semibold">
     Book A Schedule Now
   </span>
-</button>
+</button></Link>
 
                 </div>
               </div>

@@ -14,6 +14,7 @@ import AdminLogin from "./pages/admin/Adminlogin";
 import AdminSignup from "./pages/admin/Adminsignup";
 import EditProfile from "./pages/editprofile/Editprofile";
 import BookServices from "./pages/services/Bookservices";
+import UserHeader from "./components/header/Userheader";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/adminsignup" element={<AdminSignup />} /> 
         <Route path='/editprofile' element={<ProtectedRoute element={<EditProfile />} />} />
         <Route path="/userhome" element={<ProtectedRoute element={<UserHome />} />} />
+        <Route path="/userheader" element={<ProtectedRoute element={<UserHeader />} />} />
       </Routes>
     </Router>
   );
