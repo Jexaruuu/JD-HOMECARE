@@ -28,14 +28,14 @@ const UserNavigation = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:3000/api/logout", {}, { withCredentials: true });
-
-      localStorage.removeItem("user");
-      navigate("/");
-
+      await axios.post('http://localhost:3000/api/logout', {}, { withCredentials: true });
+  
+      localStorage.removeItem('user');
+      navigate('/');
+  
       window.location.reload();
     } catch (error) {
-      console.error("Logout failed:", error);
+      console.error('Logout failed:', error);
     }
   };
 
