@@ -18,24 +18,27 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
-
+    
         try {
             const response = await axios.post("http://localhost:3000/api/login", {
                 email,
                 password
             });
-
+    
             console.log("Login Success:", response.data);
+    
             localStorage.setItem("user", JSON.stringify(response.data.user));
-
+            localStorage.setItem("userId", response.data.user.id); 
+    
             navigate("/userhome", { replace: true }); 
         } catch (err) {
             setError(err.response?.data?.message || "Login failed");
         }
     };
+    
 
-    return (
-        <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
+        return (
+            <div className="flex flex-col md:flex-row min-h-screen bg-gray-100">
             <div className="hidden md:block md:w-1/2 bg-[url('/carpenter.jpg')] bg-cover bg-center"></div>
             <div className="flex justify-center items-center w-full md:w-1/2 bg-white shadow-lg p-6 md:p-8">
                 <div className="w-full max-w-xs sm:max-w-sm md:max-w-md flex flex-col items-center">

@@ -23,8 +23,8 @@ const handleDeleteAccount = async () => {
 };
 
 const EditProfile = () => {
-    const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+    const [first_name, setfirst_name] = useState("");
+    const [last_name, setlast_name] = useState("");
     const [mobile, setMobile] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -41,8 +41,8 @@ const EditProfile = () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/user/${userId}`);
                 const userData = response.data;
-                setFirstName(userData.firstName);
-                setLastName(userData.lastName);
+                setfirst_name(userData.first_name);
+                setlast_name(userData.last_name);
                 setMobile(userData.mobile);
                 setEmail(userData.email);
             } catch (err) {
@@ -71,8 +71,8 @@ const EditProfile = () => {
     }
 
     const userData = {
-        firstName,
-        lastName,
+        first_name,
+        last_name,
         mobile,
         email,
         password: password || undefined, // Only send password if it's being changed
@@ -88,8 +88,8 @@ const EditProfile = () => {
         const currentUser = JSON.parse(localStorage.getItem("user"));
         if (currentUser) {
             currentUser.email = email;
-            currentUser.firstName = firstName;
-            currentUser.lastName = lastName;
+            currentUser.first_name = first_name;
+            currentUser.last_name = last_name;
             localStorage.setItem("user", JSON.stringify(currentUser));
         }
         
@@ -139,8 +139,8 @@ const EditProfile = () => {
                                 <input
                                     type="text"
                                     className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                                    value={firstName}
-                                    onChange={(e) => setFirstName(e.target.value)}
+                                    value={first_name}
+                                    onChange={(e) => setfirst_name(e.target.value)}
                                     required
                                     placeholder="Enter your first name"
                                 />
@@ -153,8 +153,8 @@ const EditProfile = () => {
                                 <input
                                     type="text"
                                     className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                                    value={lastName}
-                                    onChange={(e) => setLastName(e.target.value)}
+                                    value={last_name}
+                                    onChange={(e) => setlast_name(e.target.value)}
                                     required
                                     placeholder="Enter your last name"
                                 />

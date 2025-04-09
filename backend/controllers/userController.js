@@ -17,16 +17,16 @@ exports.getUserById = async (req, res) => {
 // Update user by ID
 exports.updateUser = async (req, res) => {
     const { id } = req.params;
-    const { firstName, lastName, mobile, email, password } = req.body;
+    const { first_name, last_name, mobile, email, password } = req.body;
 
     try {
         const query = password
-            ? "UPDATE users SET firstName=?, lastName=?, mobile=?, email=?, password=? WHERE id=?"
-            : "UPDATE users SET firstName=?, lastName=?, mobile=?, email=? WHERE id=?";
+            ? "UPDATE users SET first_name=?, last_name=?, mobile=?, email=?, password=? WHERE id=?"
+            : "UPDATE users SET first_name=?, last_name=?, mobile=?, email=? WHERE id=?";
         
         const values = password
-            ? [firstName, lastName, mobile, email, password, id]
-            : [firstName, lastName, mobile, email, id];
+            ? [first_name, last_name, mobile, email, password, id]
+            : [first_name, last_name, mobile, email, id];
 
         await db.query(query, values);
         res.json({ message: "User updated successfully" });
