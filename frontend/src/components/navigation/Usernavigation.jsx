@@ -9,23 +9,52 @@ const UserNavigation = () => {
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
-      setUser(JSON.parse(storedUser)); 
+      let parsedUser = JSON.parse(storedUser);
+  
+      // Remove old fields if they exist and use the new ones
+      if (parsedUser.firstName || parsedUser.lastName) {
+        parsedUser.first_name = parsedUser.first_name || parsedUser.firstName;
+        parsedUser.last_name = parsedUser.last_name || parsedUser.lastName;
+        delete parsedUser.firstName;
+        delete parsedUser.lastName;
+        localStorage.setItem("user", JSON.stringify(parsedUser)); // Save cleaned data back
+      }
+  
+      setUser(parsedUser); // Update state with cleaned user data
     }
   }, []);
+  
+  
 
   const handleLogout = async () => {
     try {
       await axios.post("http://localhost:3000/api/logout", {}, { withCredentials: true });
 
-      localStorage.removeItem("user"); 
-      navigate("/"); 
+      localStorage.removeItem("user");
+      navigate("/");
 
-      
       window.location.reload();
     } catch (error) {
       console.error("Logout failed:", error);
     }
   };
+
+  const handleProfileUpdate = (updatedUserData) => {
+    const updatedUser = {
+      ...updatedUserData,
+      first_name: updatedUserData.first_name, // Ensure you're using new field names
+      last_name: updatedUserData.last_name,
+    };
+  
+    // Remove old fields if they exist
+    delete updatedUser.firstName;
+    delete updatedUser.lastName;
+  
+    setUser(updatedUser); // Update state
+    localStorage.setItem("user", JSON.stringify(updatedUser)); // Save updated data in localStorage
+  };
+  
+  
 
   return (
     <header className="bg-[#F3F4F6] shadow-sm p-4">
@@ -40,9 +69,8 @@ const UserNavigation = () => {
 
           <div className="flex items-center space-x-4 mt-2">
             <div className="flex flex-col">
-             
               {user ? (
-                <p className="text-gray-700 font-medium">{`${user.firstName} ${user.lastName}`}</p>
+                <p className="text-gray-700 font-medium">{`${user.first_name} ${user.last_name}`}</p>
               ) : (
                 <p className="text-gray-700 font-medium">Guest</p>
               )}
@@ -70,34 +98,33 @@ const UserNavigation = () => {
           </div>
 
           <nav>
-  <ul className="flex space-x-6 text-[18px]">
-    <li className="relative group w-max">
-      <Link to="/userhome" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-        Home
-        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
-      </Link>
-    </li>
-    <li className="relative group w-max">
-      <Link to="/userabout" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-        About
-        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
-      </Link>
-    </li>
-    <li className="relative group w-max">
-      <Link to="/bookservices" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-        Book a Worker
-        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
-      </Link>
-    </li>
-    <li className="relative group w-max">
-      <Link to="/taskerform" className="text-gray-700 font-medium hover:text-[#0d05d2]">
-        Become a Worker
-        <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
-      </Link>
-    </li>
-  </ul>
-</nav>
-
+            <ul className="flex space-x-6 text-[18px]">
+              <li className="relative group w-max">
+                <Link to="/userhome" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+                  Home
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                </Link>
+              </li>
+              <li className="relative group w-max">
+                <Link to="/userabout" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+                  About
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                </Link>
+              </li>
+              <li className="relative group w-max">
+                <Link to="/bookservices" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+                  Book a Worker
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                </Link>
+              </li>
+              <li className="relative group w-max">
+                <Link to="/taskerform" className="text-gray-700 font-medium hover:text-[#0d05d2]">
+                  Become a Worker
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-indigo-600 transition-all group-hover:w-full"></span>
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </header>

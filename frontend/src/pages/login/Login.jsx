@@ -18,23 +18,36 @@ const Login = () => {
     const handleLogin = async (e) => {
         e.preventDefault();
         setError("");
-    
+        
         try {
-            const response = await axios.post("http://localhost:3000/api/login", {
-                email,
-                password
-            });
-    
-            console.log("Login Success:", response.data);
-    
-            localStorage.setItem("user", JSON.stringify(response.data.user));
-            localStorage.setItem("userId", response.data.user.id); 
-    
-            navigate("/userhome", { replace: true }); 
+          const response = await axios.post("http://localhost:3000/api/login", {
+            email,
+            password
+          });
+      
+          console.log("Login Success:", response.data);
+      
+          // Clean up user data before saving it to localStorage
+          const userData = response.data.user;
+          const cleanedUser = {
+            ...userData,
+            first_name: userData.first_name || userData.firstName, // Choose the new fields
+            last_name: userData.last_name || userData.lastName,
+          };
+          
+          // Remove old fields if they exist
+          delete cleanedUser.firstName;
+          delete cleanedUser.lastName;
+      
+          localStorage.setItem("user", JSON.stringify(cleanedUser));
+          localStorage.setItem("userId", response.data.user.id);
+      
+          navigate("/userhome", { replace: true });
         } catch (err) {
-            setError(err.response?.data?.message || "Login failed");
+          setError(err.response?.data?.message || "Login failed");
         }
-    };
+      };
+      
     
 
         return (
