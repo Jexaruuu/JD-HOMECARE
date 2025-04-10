@@ -7,7 +7,7 @@ const loginRoutes = require('./routes/loginRoutes');
 const logoutRoutes = require('./routes/logoutRoutes'); 
 const userRoutes = require('./routes/userRoutes');
 
-const app = express();
+const app = express(); // Initialize the app here
 
 // CORS configuration - Allow specific origin with credentials
 app.use(cors({

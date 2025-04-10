@@ -12,10 +12,9 @@ const handleDeleteAccount = async () => {
         await axios.delete(`http://localhost:3000/api/user/${userId}`);
         alert("Account deleted successfully!");
 
-        // Clear localStorage and navigate to homepage or login
         localStorage.removeItem("userId");
         localStorage.removeItem("user");
-        navigate("/login"); // or wherever you want
+        navigate("/login");
     } catch (error) {
         console.error(error);
         setError(error.response?.data?.message || "Error deleting account");
@@ -24,9 +23,9 @@ const handleDeleteAccount = async () => {
 
 const EditProfile = () => {
     const [first_name, setfirst_name] = useState("");
-    const [last_name, setlast_name] = useState("");
-    const [mobile, setMobile] = useState("");
-    const [email, setEmail] = useState("");
+const [last_name, setlast_name] = useState("");
+const [mobile, setMobile] = useState("");
+const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
@@ -36,15 +35,16 @@ const EditProfile = () => {
     // Sample: assume user ID is stored in localStorage
     const userId = localStorage.getItem("userId");
 
+
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/user/${userId}`);
                 const userData = response.data;
-                setfirst_name(userData.first_name);
-                setlast_name(userData.last_name);
-                setMobile(userData.mobile);
-                setEmail(userData.email);
+setfirst_name(userData.first_name || "");
+setlast_name(userData.last_name || "");
+setMobile(userData.mobile || "");
+setEmail(userData.email || "");
             } catch (err) {
                 console.error(err);
                 setError("Failed to fetch user data");
@@ -94,7 +94,7 @@ const EditProfile = () => {
         }
         
         alert("Profile updated successfully!");
-        navigate("/profile");
+        navigate("/editprofile");
     } catch (error) {
         console.error(error);
         setError(error.response?.data?.message || "Error during profile update");

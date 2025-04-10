@@ -11,17 +11,16 @@ const login = async (req, res) => {
     try {
         const [user] = await db.execute('SELECT * FROM users WHERE email = ?', [email]);
 
-        if (user.length === 0) {
-            return res.status(401).json({ message: "Invalid email or password" });
-        }
+if (!user || user.length === 0) {
+    return res.status(401).json({ message: "Invalid email or password" });
+}
 
-        const validPassword = await bcrypt.compare(password, user[0].password);
+const validPassword = await bcrypt.compare(password, user[0].password);
 
-        if (!validPassword) {
-            return res.status(401).json({ message: "Invalid email or password" });
-        }
+if (!validPassword) {
+    return res.status(401).json({ message: "Invalid email or password" });
+}
 
-     
         res.status(200).json({ 
             message: "Login successful", 
             user: { 

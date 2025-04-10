@@ -1,5 +1,6 @@
 // controllers/userController.js
 const db = require('../db');
+const bcrypt = require("bcrypt"); // added for hashing passwords
 
 // Get user by ID
 exports.getUserById = async (req, res) => {
@@ -20,13 +21,18 @@ exports.updateUser = async (req, res) => {
     const { first_name, last_name, mobile, email, password } = req.body;
 
     try {
-        const query = password
-            ? "UPDATE users SET first_name=?, last_name=?, mobile=?, email=?, password=? WHERE id=?"
-            : "UPDATE users SET first_name=?, last_name=?, mobile=?, email=? WHERE id=?";
-        
-        const values = password
-            ? [first_name, last_name, mobile, email, password, id]
-            : [first_name, last_name, mobile, email, id];
+        let query;
+        let values;
+
+        if (password) {
+            const saltRounds = 10;
+            const hashedPassword = await bcrypt.hash(password, saltRounds);
+            query = "UPDATE users SET first_name=?, last_name=?, mobile=?, email=?, password=? WHERE id=?";
+            values = [first_name, last_name, mobile, email, hashedPassword, id];
+        } else {
+            query = "UPDATE users SET first_name=?, last_name=?, mobile=?, email=? WHERE id=?";
+            values = [first_name, last_name, mobile, email, id];
+        }
 
         await db.query(query, values);
         res.json({ message: "User updated successfully" });
