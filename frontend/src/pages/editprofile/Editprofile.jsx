@@ -4,104 +4,112 @@ import axios from "axios";
 import Navigation from "../../components/navigation/Usernavigation";
 import Footer from "../../components/footer/Footer";
 
-const handleDeleteAccount = async () => {
-    const confirmDelete = confirm("Are you sure you want to delete your account? This cannot be undone.");
-    if (!confirmDelete) return;
-
-    try {
-        await axios.delete(`http://localhost:3000/api/user/${userId}`);
-        alert("Account deleted successfully!");
-
-        localStorage.removeItem("userId");
-        localStorage.removeItem("user");
-        navigate("/login");
-    } catch (error) {
-        console.error(error);
-        setError(error.response?.data?.message || "Error deleting account");
-    }
-};
-
 const EditProfile = () => {
-    const [first_name, setfirst_name] = useState("");
-const [last_name, setlast_name] = useState("");
-const [mobile, setMobile] = useState("");
-const [email, setEmail] = useState("");
+    const [first_name, setFirstName] = useState("");
+    const [last_name, setLastName] = useState("");
+    const [mobile, setMobile] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
-    // Sample: assume user ID is stored in localStorage
-    const userId = localStorage.getItem("userId");
-
+    // Assuming userId is stored in localStorage after user logs in
+    const userId = localStorage.getItem("userId");  // Make sure the userId is available here
 
     useEffect(() => {
         const fetchUser = async () => {
             try {
                 const response = await axios.get(`http://localhost:3000/api/user/${userId}`);
                 const userData = response.data;
-setfirst_name(userData.first_name || "");
-setlast_name(userData.last_name || "");
-setMobile(userData.mobile || "");
-setEmail(userData.email || "");
+                setFirstName(userData.first_name || "");
+                setLastName(userData.last_name || "");
+                setMobile(userData.mobile || "");
+                setEmail(userData.email || "");
             } catch (err) {
                 console.error(err);
                 setError("Failed to fetch user data");
             }
         };
-    
-        fetchUser();
+
+        if (userId) {
+            fetchUser();
+        } else {
+            setError("User not logged in");
+        }
     }, [userId]);
 
-   const handleUpdateProfile = async (e) => {
-    e.preventDefault();
+    // Handle account deletion
+    const handleDeleteAccount = async () => {
+        const confirmDelete = window.confirm("Are you sure you want to delete your account? This cannot be undone.");
+        if (!confirmDelete) return;
 
-    if (!email.endsWith("@gmail.com")) {
-        return setError("Only Gmail addresses are allowed.");
-    }
+        try {
+            // Send DELETE request with credentials (cookies/session)
+            await axios.delete(`http://localhost:3000/api/user/${userId}`, {
+                withCredentials: true, // Ensure credentials are sent with the request
+            });
 
-    const mobilePattern = /^[0-9]{11}$/;
-    if (!mobilePattern.test(mobile)) {
-        return setError("Mobile number must be exactly 11 digits.");
-    }
+            alert("Account deleted successfully!");
 
-    if (password && password !== confirmPassword) {
-        return setError("Passwords do not match!");
-    }
-
-    const userData = {
-        first_name,
-        last_name,
-        mobile,
-        email,
-        password: password || undefined, // Only send password if it's being changed
+            localStorage.removeItem("userId");
+            localStorage.removeItem("user");
+            navigate("/");
+        } catch (error) {
+            console.error(error);
+            setError(error.response?.data?.message || "Error deleting account");
+        }
     };
 
-    setLoading(true);
-    setError("");
+    const handleUpdateProfile = async (e) => {
+        e.preventDefault();
 
-    try {
-        const response = await axios.put(`http://localhost:3000/api/user/${userId}`, userData);
-        
-        // Update local storage if email or name changed
-        const currentUser = JSON.parse(localStorage.getItem("user"));
-        if (currentUser) {
-            currentUser.email = email;
-            currentUser.first_name = first_name;
-            currentUser.last_name = last_name;
-            localStorage.setItem("user", JSON.stringify(currentUser));
+        if (!email.endsWith("@gmail.com")) {
+            return setError("Only Gmail addresses are allowed.");
         }
-        
-        alert("Profile updated successfully!");
-        navigate("/editprofile");
-    } catch (error) {
-        console.error(error);
-        setError(error.response?.data?.message || "Error during profile update");
-    } finally {
-        setLoading(false);
-    }
-};
+
+        const mobilePattern = /^[0-9]{11}$/;
+        if (!mobilePattern.test(mobile)) {
+            return setError("Mobile number must be exactly 11 digits.");
+        }
+
+        if (password && password !== confirmPassword) {
+            return setError("Passwords do not match!");
+        }
+
+        const userData = {
+            first_name,
+            last_name,
+            mobile,
+            email,
+            password: password || undefined, // Only send password if it's being changed
+        };
+
+        setLoading(true);
+        setError("");
+
+        try {
+            const response = await axios.put(`http://localhost:3000/api/user/${userId}`, userData);
+
+            // Update local storage if email or name changed
+            const currentUser = JSON.parse(localStorage.getItem("user"));
+            if (currentUser) {
+                currentUser.email = email;
+                currentUser.first_name = first_name;
+                currentUser.last_name = last_name;
+                localStorage.setItem("user", JSON.stringify(currentUser));
+            }
+
+            alert("Profile updated successfully!");
+            navigate("/editprofile");
+        } catch (error) {
+            console.error(error);
+            setError(error.response?.data?.message || "Error during profile update");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <div className="bg-[#F8FAFC] font-sans min-h-screen">
@@ -140,7 +148,7 @@ setEmail(userData.email || "");
                                     type="text"
                                     className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                     value={first_name}
-                                    onChange={(e) => setfirst_name(e.target.value)}
+                                    onChange={(e) => setFirstName(e.target.value)}
                                     required
                                     placeholder="Enter your first name"
                                 />
@@ -154,7 +162,7 @@ setEmail(userData.email || "");
                                     type="text"
                                     className="w-full border border-gray-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                                     value={last_name}
-                                    onChange={(e) => setlast_name(e.target.value)}
+                                    onChange={(e) => setLastName(e.target.value)}
                                     required
                                     placeholder="Enter your last name"
                                 />
@@ -253,46 +261,30 @@ setEmail(userData.email || "");
                         <button
                             type="button"
                             onClick={() => navigate(-1)}
-                            className="relative overflow-hidden group bg-gray-200 hover:bg-gray-300 text-gray-800 font-bold py-3 px-6 rounded-lg shadow transition-all duration-300 ease-in-out transform hover:scale-105"
+                            className="relative overflow-hidden group bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-8 rounded-lg shadow-md"
                         >
-                            <span className="relative">
-                                <i className="fas fa-arrow-left mr-2"></i> Back
-                            </span>
+                            Cancel
                         </button>
-                        
-                        <div className="space-x-4">
-                        <button
-    type="button"
-    onClick={handleDeleteAccount}
-    className="relative overflow-hidden group bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-lg shadow transition-all duration-300 ease-in-out transform hover:scale-105"
->
-    <span className="relative">
-        <i className="fas fa-trash-alt mr-2"></i> Delete Account
-    </span>
-</button>
 
-                            
-                            <button
-                                type="submit"
-                                className="relative overflow-hidden group bg-[#000081] hover:bg-gradient-to-r hover:from-[#000081] hover:to-[#0d05d2] text-white font-bold py-3 px-6 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform hover:scale-105 hover:ring-2 hover:ring-offset-2 hover:ring-blue-400"
-                                disabled={loading}
-                            >
-                                <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-                                <span className="relative">
-                                    {loading ? (
-                                        <>
-                                            <i className="fas fa-spinner fa-spin mr-2"></i> Updating...
-                                        </>
-                                    ) : (
-                                        <>
-                                            <i className="fas fa-save mr-2"></i> Update Profile
-                                        </>
-                                    )}
-                                </span>
-                            </button>
-                        </div>
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="relative overflow-hidden group bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md"
+                        >
+                            {loading ? "Updating..." : "Update Profile"}
+                        </button>
                     </div>
                 </form>
+
+                {/* Delete Account Section */}
+                <div className="flex justify-center pt-8">
+                    <button
+                        onClick={handleDeleteAccount}
+                        className="text-red-600 hover:text-red-700 font-semibold"
+                    >
+                        Delete Account
+                    </button>
+                </div>
             </div>
             
             <Footer />
@@ -301,4 +293,3 @@ setEmail(userData.email || "");
 };
 
 export default EditProfile;
-
