@@ -62,22 +62,30 @@ const EditProfile = () => {
         }
     };
 
+    const handleDeleteAccountWithScroll = async () => {
+        // Smooth scroll to the top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    
+        // Call the original handleDeleteAccount function
+        await handleDeleteAccount();
+    };
+
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
-
+    
         if (!email.endsWith("@gmail.com")) {
             return setError("Only Gmail addresses are allowed.");
         }
-
+    
         const mobilePattern = /^[0-9]{11}$/;
         if (!mobilePattern.test(mobile)) {
             return setError("Mobile number must be exactly 11 digits.");
         }
-
+    
         if (password && password !== confirmPassword) {
             return setError("Passwords do not match!");
         }
-
+    
         const userData = {
             first_name,
             last_name,
@@ -85,13 +93,13 @@ const EditProfile = () => {
             email,
             password: password || undefined, // Only send password if it's being changed
         };
-
+    
         setLoading(true);
         setError("");
-
+    
         try {
             const response = await axios.put(`http://localhost:3000/api/user/${userId}`, userData);
-
+    
             // Update local storage if email or name changed
             const currentUser = JSON.parse(localStorage.getItem("user"));
             if (currentUser) {
@@ -100,9 +108,20 @@ const EditProfile = () => {
                 currentUser.last_name = last_name;
                 localStorage.setItem("user", JSON.stringify(currentUser));
             }
-
-            alert("Profile updated successfully!");
-            navigate("/editprofile");
+    
+            // Check if the password was updated
+            if (password) {
+                alert("Your password has been updated. Please log out and log in again.");
+                // Optionally log the user out by removing session data
+                localStorage.removeItem("userId");
+                localStorage.removeItem("user");
+    
+                // Redirect to the login page
+                navigate("/login");
+            } else {
+                alert("Profile updated successfully!");
+                navigate("/editprofile");
+            }
         } catch (error) {
             console.error(error);
             setError(error.response?.data?.message || "Error during profile update");
@@ -110,6 +129,7 @@ const EditProfile = () => {
             setLoading(false);
         }
     };
+    
 
     return (
         <div className="bg-[#F8FAFC] font-sans min-h-screen">
@@ -260,30 +280,38 @@ const EditProfile = () => {
                     <div className="flex justify-between pt-8">
                         <button
                             type="button"
-                            onClick={() => navigate(-1)}
+                            onClick={() => navigate('/userhome')}
                             className="relative overflow-hidden group bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-8 rounded-lg shadow-md"
                         >
                             Cancel
                         </button>
-
                         <button
-                            type="submit"
-                            disabled={loading}
-                            className="relative overflow-hidden group bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-lg shadow-md"
-                        >
-                            {loading ? "Updating..." : "Update Profile"}
-                        </button>
+  type="submit"
+  disabled={loading}
+  className="relative w-60 rounded px-5 py-2.5 overflow-hidden group bg-[#000081] 
+             hover:bg-gradient-to-r hover:from-[#000081] hover:to-[#0d05d2] 
+             text-white hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 
+             transition-all ease-out duration-300 cursor-pointer"
+>
+  <span
+    className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform 
+               translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"
+  ></span>
+  <span className="relative text-base font-semibold">
+    {loading ? "Updating..." : "Update Profile"}
+  </span>
+</button>
                     </div>
                 </form>
 
                 {/* Delete Account Section */}
                 <div className="flex justify-center pt-8">
-                    <button
-                        onClick={handleDeleteAccount}
-                        className="text-red-600 hover:text-red-700 font-semibold"
-                    >
-                        Delete Account
-                    </button>
+                <button
+    onClick={handleDeleteAccountWithScroll}
+    className="text-red-600 hover:text-red-700 font-semibold"
+>
+    Delete Account
+</button>
                 </div>
             </div>
             

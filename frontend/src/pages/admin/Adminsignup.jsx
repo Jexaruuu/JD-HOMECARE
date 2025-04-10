@@ -91,10 +91,10 @@ const AdminSignup = () => {
 
         <div className="flex flex-col sm:flex-row justify-between mt-4 text-gray-600 text-sm w-full">
           <Link to="/adminlogin" className="hover:underline cursor-pointer">
-            Already have an account? Login
+            Already have an account?
           </Link>
           <Link to="#" className="hover:underline sm:ml-auto mt-2 sm:mt-0 cursor-pointer">
-            Forgot Admin Password?
+            Forgot Password?
           </Link>
         </div>
       </div>

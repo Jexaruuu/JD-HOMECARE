@@ -130,20 +130,24 @@ const Header = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-4 bg-[#efefef] bg-opacity-70 text-black flex flex-col items-center">
                   <h3 className="font-bold text-lg mb-2">{proj.name}</h3>
                   <p className="text-[14px] font-semibold">Service Rate / Hour: {proj.rate}</p>
-              <Link to="/bookservices"><button
-  className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#000081] text-white mt-2 
+                  <Link to="/bookservices">
+  <button
+    className="relative rounded px-5 py-2.5 overflow-hidden group bg-[#000081] text-white mt-2 
              hover:bg-gradient-to-r hover:from-[#000081] hover:to-[#0d05d2] 
              hover:ring-2 hover:ring-offset-2 hover:ring-indigo-400 
              transition-all ease-out duration-300 cursor-pointer"
->
-  <span
-    className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform 
-               translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"
-  ></span>
-  <span className="relative text-base font-semibold">
-    Book A Schedule Now
-  </span>
-</button></Link>
+    onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+  >
+    <span
+      className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform 
+                 translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"
+    ></span>
+    <span className="relative text-base font-semibold">
+      Book A Schedule Now
+    </span>
+  </button>
+</Link>
+
 
                 </div>
               </div>

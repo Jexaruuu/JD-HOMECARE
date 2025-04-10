@@ -4,7 +4,7 @@ import Home from "./pages/home/Home";
 import UserHome from "./pages/userhome/Userhome";
 import Login from '/src/pages/login/Login.jsx';
 import Signup from "./pages/signup/Signup";
-import ForgotPassword from "./pages/forgotpassword/forgotpassword";
+import ForgotPassword from "./pages/forgotpassword/Forgotpassword";
 import Services from "./pages/services/Services";
 import TaskerForm from "./pages/taskerform/Taskerform";
 import ProtectedRoute from "./components/protectedroutes/ProtectedRoutes";
@@ -29,8 +29,8 @@ function App() {
         <Route path="/taskerform" element={<ProtectedRoute element={<TaskerForm />} />} />
         <Route path="/about" element={<About />} />
         <Route path="/userabout" element={<ProtectedRoute element={<UserAbout/>} />} />
-        <Route path="/adminlogin" element={<AdminLogin />} /> 
-        <Route path="/adminsignup" element={<AdminSignup />} /> 
+        <Route path="/adminlogin" element={<ProtectedRoute element={<AdminLogin />} />} />
+        <Route path="/adminsignup" element={<ProtectedRoute element={<AdminSignup />} />} />
         <Route path='/editprofile' element={<ProtectedRoute element={<EditProfile />} />} />
         <Route path="/userhome" element={<ProtectedRoute element={<UserHome />} />} />
         <Route path="/userheader" element={<ProtectedRoute element={<UserHeader />} />} />

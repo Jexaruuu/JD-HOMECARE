@@ -108,7 +108,7 @@ const TaskerForm = () => {
         <section className="relative text-center flex flex-col justify-center items-center text-white w-full h-auto py-10 z-10 px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-              Join Our Team of Trusted Home Service Professionals
+              Join Our Team of Trusted Home Service Workers
             </h1>
             <p className="text-xl mb-8 text-gray-200">
               Earn money doing what you love while helping homeowners with their needs

@@ -28,7 +28,19 @@ exports.updateUser = async (req, res) => {
         if (result.affectedRows === 0) {
             return res.status(404).json({ message: "User not found" });
         }
-        res.json({ message: "Profile updated successfully" });
+
+        // Only destroy session if the password was changed
+        if (password) {
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error(err);
+                    return res.status(500).json({ message: "Error logging out" });
+                }
+                res.json({ message: "Password updated successfully. Please log out and log in again." });
+            });
+        } else {
+            res.json({ message: "Profile updated successfully" });
+        }
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Server error" });
@@ -45,10 +57,16 @@ exports.deleteUser = async (req, res) => {
     }
 
     try {
+        // Delete the user from the database
         await db.query("DELETE FROM users WHERE id = ?", [id]);
-        res.json({ message: "User deleted successfully" });
+
+        // Reset the AUTO_INCREMENT to 1
+        await db.query("ALTER TABLE users AUTO_INCREMENT = 1");
+
+        res.json({ message: "User deleted successfully and ID reset to 1" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Error deleting user" });
     }
 };
+
